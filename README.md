@@ -2,7 +2,7 @@
 AIP Project that matches employees to their employers
 
 # How to run
---
+Type npm start to run main file.
 
 # Software and Tools used
 **RoboMongo**
