@@ -1,10 +1,10 @@
 {
-  "name": "AIP-job-matcher",
+  "name": "aip-job-matcher",
   "version": "1.0.0",
+  "private": true,
   "description": "AIP Project that matches employees to their employers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
   "repository": {
@@ -20,7 +20,8 @@
   "homepage": "https://github.com/ferdyanata/AIP-job-matcher#readme",
   "dependencies": {
     "eslint": "^5.4.0",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongoose": "^5.2.9"
   },
   "devDependencies": {
     "nodemon": "^1.18.3"
