@@ -1,11 +1,22 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default class AdvertisedPosition extends React.Component {
     render() {
         return (
             <div>
-                <p> This represents an individual position, which should be displayed in a list by AdvertisedPositions.js</p>
+                <p>{this.props.name}</p>
+                <Link
+                  to={{
+                    pathname: `/job-info/${this.props.name}`,
+                  }}
+                >
+                View
+                </Link>
             </div>
         );
     }
+    
+
+    
 }
