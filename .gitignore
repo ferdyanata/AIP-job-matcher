@@ -2,3 +2,4 @@
 /node_modules
 /express-server/node_modules
 /react-redux-client/node_modules
+/.vscode
