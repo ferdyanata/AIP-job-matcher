@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 /**
  * initialize routes created in 'routes' folder
  */
-app.use('/api', require('./routes/api.server.route'));
+app.use('/api', require('./routes/apiServerRoute'));
 
 app.listen(port, function(){
     // Passing backtick/template strings in the method argument so we can embed expressions ${port}
