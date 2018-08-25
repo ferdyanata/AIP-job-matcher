@@ -4,7 +4,7 @@ import AdvertisedPosition from '../AdvertisedPosition/AdvertisedPosition';
 export default class AdvertisedPositions extends React.Component {
     render() {
         return (
-            <div>
+            <div class="ui segment">
                 <h2> Advertised Positions </h2>
                 {positionData.map( position => 
                 <div>
