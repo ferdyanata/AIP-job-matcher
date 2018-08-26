@@ -1,1 +1,0 @@
-// this page will handle landing pages
