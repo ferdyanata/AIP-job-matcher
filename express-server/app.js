@@ -3,18 +3,20 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); // Assist with MongoDB connection
 const port = process.env.PORT || 4000;
+const path = require('path'); // included module with NodeJs
+const employerRegisterRoute = require('./routes/employerRegisterRoute'),
+      talentRegisterRoute = require('./routes/talentRegisterRoute');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', function (req, res) {
-    res.send('Api is working');
-});
+// load view engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jsx');
 
 /**
  * connect to mongodb MLab
  */
 //const db = require('./config/keys').mongoURI;
-
 mongoose
     //.connect(db, { useNewUrlParser: true })
     .connect('mongodb://localhost/job_seeker', { useNewUrlParser: true })
@@ -35,11 +37,14 @@ mongoose
 app.use(bodyParser.json());
 
 /**
- * initialize routes created in 'routes' folder
+ * route files
  */
-app.use('/api', require('./routes/employerRegisterRoute')),
-app.use('/api', require('./routes/devRoute'));
+app.use('/api', employerRegisterRoute),
+    app.use('/api', talentRegisterRoute)
 
+/**
+ * set port for the host to listen to
+ */
 app.listen(port, function () {
     // Passing backtick/template strings in the method argument so we can embed expressions ${port}
     console.log(`Listening on port ${port}...`)

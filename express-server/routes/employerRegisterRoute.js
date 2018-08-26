@@ -6,7 +6,7 @@ const express = require('express');
  */
 
 const router = express.Router();
-const Employer = require('../models/employerServerModel.js');
+const Employer = require('../models/employerModel.js');
 
 /**
  * display registration form
@@ -25,6 +25,12 @@ router.post('/employer-register', function (req, res, next) {
         jobTitle: req.body.jobTitle,
         companyName: req.body.companyName
     });
+
+    req.checkBody('firstName', 'Name is required').notEmpty();
+    req.checkBody('lastName', 'Last name is required').notEmpty();
+    req.checkBody('email', 'email is required').notEmpty();
+    req.checkBody('email', 'email is not valid').isEmail(); // check whether it is valid
+    req.checkBody('phone', 'phone is required').notEmpty();
 
     newUser.save().then(function (user) {
         res.send(user);
