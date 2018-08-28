@@ -1,6 +1,24 @@
 # AIP-job-matcher
 AIP Project that matches employees to their employers
 
+# Coding Standards we follow
+
+**General**
+> Use camel-case for naming files and variables (e.g. "firstName").
+> 4 space indentation.
+> Method brackets must open on the same line as method name and end on a new line.
+> Line length must not exceed 80.
+> Tags with no children must self-close (" />"), not "</div>" for instance.
+
+**React-Specific**
+> No more than one class component per file.
+> Components may only share directories is they are very closely related (e.g parent child relationship) and the sub-component is ONLY used by the parent.
+> Use meaningful, detailed variable names for varibles to be accessed via props and state.
+> Break up App.js where possible into sub-components, in order to keep it simple.
+> Use PascalCase notation for file and class name for components (e.g. "MyComponent")
+> Use function notation for stateless components
+
+
 # How to run
 Type npm start to run main file.
 
