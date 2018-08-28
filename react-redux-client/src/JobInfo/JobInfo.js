@@ -3,12 +3,14 @@ import AppliedMatchedDetails from '../AppliedMatchedDetails.js/AppliedMatchedDet
 
 export default class JobInfo extends React.Component {
     render() {
+        const usertype = this.props.match.params.usertype;
         return (
             <div class="ui segment">
                 <h4>{this.props.match.params.id}</h4>
                 <p>This role is suited towards a recent university graduate who is familiar with Javascript.</p>
                 <br/>
-                 <AppliedMatchedDetails/>
+                {usertype === 'employer' ? ( <AppliedMatchedDetails/>) : <p>Talent stuff goes here</p>}
+                                     
             </div>
         );
     }

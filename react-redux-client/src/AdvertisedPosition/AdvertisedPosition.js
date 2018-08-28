@@ -9,8 +9,8 @@ export default class AdvertisedPosition extends React.Component {
                 <p>{this.props.description}</p>
                 <Link
                     to={{
-                        pathname: `/job-info/${this.props.name}`,
-                    }}
+                        pathname: `/${this.props.usertype}/job-info/${this.props.name}`,
+                        }}
                 >
                     View
                 </Link>

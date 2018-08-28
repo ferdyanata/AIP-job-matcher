@@ -8,7 +8,7 @@ export default class AdvertisedPositions extends React.Component {
                 <h2> Advertised Positions </h2>
                 {positionData.map( position => 
                 <div>
-                    <AdvertisedPosition {...position} /> 
+                    <AdvertisedPosition {...position} usertype="employee" /> 
                     <br/>
                 </div>
                 )}
