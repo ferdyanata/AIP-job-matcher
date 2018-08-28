@@ -20,7 +20,8 @@ AIP Project that matches employees to their employers
 
 
 # How to run
-Type npm start to run main file.
+Type npm start to run individual main file such as (client-react-redux or express-server folders).
+Alternatively you can type npm run dev to run both at the same time.
 
 # Software and Tools used
 **RoboMongo**
