@@ -16,11 +16,16 @@ const talentSchema = new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    bio : String,
+    skills: [{
+        skillName: String,
+        skillLevel: Number
+    }]
 });
 
 /**
- * store employer schema into another model
+ * store talent schema into another model
  */
 const Talent = mongoose.model('talent', talentSchema);
 

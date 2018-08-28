@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
  * construct an employer model
  */
 const employerSchema = new Schema({
+    companyName: String,
     firstName: {
         type: String,
         required: [true, 'Please enter your first name']
@@ -20,9 +21,7 @@ const employerSchema = new Schema({
     phone: {
         type: String,
         required: [true, 'Please enter your number']
-    },
-    jobTitle: String,
-    companyName: String
+    }
 });
 
 /**
