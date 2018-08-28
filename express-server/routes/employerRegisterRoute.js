@@ -16,6 +16,21 @@ router.get('/employer-register', function (req, res, next) {
     res.send("employer register page");
 });
 
+/**
+ * get all employers from the database
+ */
+router.get('/get-employers', function (req, res, next) {
+    // this needs to be replaced with the jsx registration page
+    // res.send("employer register page");
+    Employer.find({}, function (err, allEmployers) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(allEmployers);
+        }
+    });
+});
+
 router.post('/employer-register', function (req, res, next) {
     const newUser = new Employer({
         firstName: req.body.firstName,
@@ -28,9 +43,9 @@ router.post('/employer-register', function (req, res, next) {
 
     req.checkBody('firstName', 'Name is required').notEmpty();
     req.checkBody('lastName', 'Last name is required').notEmpty();
-    req.checkBody('email', 'email is required').notEmpty();
-    req.checkBody('email', 'email is not valid').isEmail(); // check whether it is valid
-    req.checkBody('phone', 'phone is required').notEmpty();
+    req.checkBody('email', 'Email is required').notEmpty();
+    req.checkBody('email', 'Email is not valid').isEmail(); // check whether it is valid
+    req.checkBody('phone', 'Phone is required').notEmpty();
 
     newUser.save().then(function (user) {
         res.send(user);

@@ -7,7 +7,22 @@ const Talent = require('../models/talentModel.js');
  */
 router.get('/talent-register', function (req, res, next) {
     // this needs to be replaced with the jsx registration page
-    res.send("talent register page");
+    // res.send("talent register page");
+});
+
+/**
+ * get all talents from the database
+ */
+router.get('/get-talents', function (req, res, next) {
+    // this needs to be replaced with the jsx registration page
+    // res.send("talent register page");
+    Talent.find({}, function (err, allTalents) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(allTalents);
+        }
+    });
 });
 
 router.post('/talent-register', function (req, res, next) {
@@ -26,7 +41,7 @@ router.post('/talent-register', function (req, res, next) {
 
     if (errors) {
         // Need to create this
-        res.render('RegisterTalent', {
+        res.render('/JobInfo', {
             // render the errors onto the page
             errors: errors
         });
@@ -51,7 +66,7 @@ router.post('/talent-register', function (req, res, next) {
                     } else {
                         req.flash('success', 'You have successfully registered!');
                         // should redirect to the build portfolio page
-                        res.redirect('/')
+                        res.redirect('/AdvertisedPositions')
                     }
                 });
             });

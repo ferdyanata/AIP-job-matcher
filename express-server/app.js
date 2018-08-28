@@ -10,8 +10,8 @@ const employerRegisterRoute = require('./routes/employerRegisterRoute'),
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // load view engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jsx');
+app.set('../react-redux-client/src/components/', path.join(__dirname, '../react-redux-client/src/components/'));
+app.set('view engine', 'js');
 
 /**
  * connect to mongodb MLab
@@ -41,7 +41,7 @@ app.use(bodyParser.json());
  */
 app.use('/api', employerRegisterRoute),
     app.use('/api', talentRegisterRoute)
-
+    
 /**
  * set port for the host to listen to
  */
