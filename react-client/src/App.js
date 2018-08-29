@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import AdvertisedPositions from './AvertisedPositions/AdvertisedPositions';
-import JobInfo from './JobInfo/JobInfo';
-import SideMenu from './SideMenu/SideMenu';
-import EmployerTalentSelection from './EmployerTalentSelection';
+import AdvertisedPositions from './components/AvertisedPositions/AdvertisedPositions';
+import JobInfo from './components/JobInfo/JobInfo';
+import SideMenu from './components/SideMenu/SideMenu';
+import EmployerTalentSelection from './components/EmployerTalentSelection/EmployerTalentSelection';
 //Based of https://github.com/le-kang/AIP2018/blob/master/week04/react-router-example/src/App.js
 
 class App extends Component {

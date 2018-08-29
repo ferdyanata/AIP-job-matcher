@@ -1,5 +1,5 @@
 import React from 'react';
-import AppliedMatchedDetails from '../AppliedMatchedDetails.js/AppliedMatchedDetails'
+import AppliedMatchedDetails from "../AppliedMatchedDetails/AppliedMatchedDetails"
 
 export default class JobInfo extends React.Component {
     render() {
