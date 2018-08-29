@@ -13,6 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('../react-redux-client/src/components/', path.join(__dirname, '../react-redux-client/src/components/'));
 app.set('view engine', 'js');
 
+app.get('/', function(req, res){
+    res.send('Api working');
+});
+
 /**
  * connect to mongodb MLab
  */

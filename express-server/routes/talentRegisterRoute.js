@@ -41,7 +41,7 @@ router.post('/talent-register', function (req, res, next) {
 
     if (errors) {
         // Need to create this
-        res.render('/JobInfo', {
+        res.render('registerTalent', {
             // render the errors onto the page
             errors: errors
         });
