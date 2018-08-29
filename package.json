@@ -1,0 +1,23 @@
+{
+  "name": "aip-job-matcher",
+  "version": "1.0.0",
+  "description": "This package.json is created so we can run both server and client with one command",
+  "scripts": {
+    "server": "npm start --prefix express-server",
+    "client": "npm start --prefix react-redux-client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferdyanata/AIP-job-matcher.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ferdyanata/AIP-job-matcher/issues"
+  },
+  "homepage": "https://github.com/ferdyanata/AIP-job-matcher#readme",
+  "dependencies": {
+    "concurrently": "^4.0.0"
+  }
+}

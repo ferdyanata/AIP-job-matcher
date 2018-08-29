@@ -67,6 +67,15 @@ MongoDB, Express, React and NodeJS
 **body-parser**
 > Body-parser will be used to parse incoming request HTML body in JSON format. The reason for this use is to test POST requests on Postman.
 
+**axios**
+> Axios helps cut the middle step with just using Promised HTTP requests. Using Axios, returns the data object as expected, rather than having to convert the data from Promise to JSON format.
+
+**bcryptjs**
+> Module to hash passwords
+
+**passport**
+> Authentication middleware for Node.
+
 # Dev dependencies
 **nodemon on server-side**
 
