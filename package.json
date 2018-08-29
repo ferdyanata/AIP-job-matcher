@@ -4,7 +4,7 @@
   "description": "This package.json is created so we can run both server and client with one command",
   "scripts": {
     "server": "npm start --prefix express-server",
-    "client": "npm start --prefix react-redux-client",
+    "client": "npm start --prefix react-client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {

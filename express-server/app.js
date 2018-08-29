@@ -11,7 +11,7 @@ const employerRegisterRoute = require('./routes/employerRegisterRoute'),
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // load view engine
-app.set('../react-redux-client/src/components/', path.join(__dirname, '../react-redux-client/src/components/'));
+app.set('../react-client/src/components/', path.join(__dirname, '../react-client/src/components/'));
 app.set('view engine', 'js');
 
 app.get('/', function (req, res) {
@@ -46,7 +46,7 @@ app.use(bodyParser.json());
  */
 app.use('/api', employerRegisterRoute),
     app.use('/api', talentRegisterRoute),
-    app.use('/api', positionRoute);
+    // app.use('/api', positionRoute);
 
 
     /**
