@@ -5,7 +5,8 @@ const mongoose = require('mongoose'); // Assist with MongoDB connection
 const port = process.env.PORT || 4000;
 const path = require('path'); // included module with NodeJs
 const employerRegisterRoute = require('./routes/employerRegisterRoute'),
-      talentRegisterRoute = require('./routes/talentRegisterRoute');
+    talentRegisterRoute = require('./routes/talentRegisterRoute'),
+    positionRoute = require('./routes/positionRoute');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -13,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('../react-redux-client/src/components/', path.join(__dirname, '../react-redux-client/src/components/'));
 app.set('view engine', 'js');
 
-app.get('/', function(req, res){
+app.get('/', function (req, res) {
     res.send('Api working');
 });
 
@@ -44,12 +45,14 @@ app.use(bodyParser.json());
  * route files
  */
 app.use('/api', employerRegisterRoute),
-    app.use('/api', talentRegisterRoute)
-    
-/**
- * set port for the host to listen to
- */
-app.listen(port, function () {
-    // Passing backtick/template strings in the method argument so we can embed expressions ${port}
-    console.log(`Listening on port ${port}...`)
-});
+    app.use('/api', talentRegisterRoute),
+    app.use('/api', positionRoute);
+
+
+    /**
+     * set port for the host to listen to
+     */
+    app.listen(port, function () {
+        // Passing backtick/template strings in the method argument so we can embed expressions ${port}
+        console.log(`Listening on port ${port}...`)
+    });

@@ -8,19 +8,19 @@ const employerSchema = new Schema({
     companyName: String,
     firstName: {
         type: String,
-        required: [true, 'Please enter your first name']
+        required: true
     },
     lastName: {
         type: String,
-        required: [true, 'Please enter your last name']
+        required: true
     },
     email: {
         type: String,
-        required: [true, 'Please enter your email']
+        required: true
     },
     phone: {
         type: String,
-        required: [true, 'Please enter your number']
+        required: true
     }
 });
 

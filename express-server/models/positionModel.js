@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 //Should this go inside employer? as an array.
 //We need to figure out how to link the two schemas in mongoose.
 
-const postionSchema = new Schema({
+const positionSchema = new Schema({
     positionName: String,
     description: String,
     desiredSkills: [{
