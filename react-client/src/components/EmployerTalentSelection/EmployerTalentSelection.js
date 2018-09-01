@@ -1,13 +1,17 @@
 import React from 'react';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import TalentRegister from '../Register/TalentRegister';
+import EmployerRegister from '../Register/EmployerRegister';
 
-export default class EmployerTalentSelection extends React.Component {
+class EmployerTalentSelection extends React.Component {
     render() {
         return (
+            
             <div>
                 <Link
                     to={{
-                        pathname: `/employer/positions`,
+                        pathname: `/selection/employer-register`,
                     }}
                 >
                     Employer
@@ -15,12 +19,19 @@ export default class EmployerTalentSelection extends React.Component {
                 <br/>
                 <Link
                     to={{
-                        pathname: `/talent/positions`,
+                        pathname: `/selection/talent-register`,
                     }}
                 >
                     Talent
                 </Link>
+                <Switch>
+                    <Route path='/selection/employer-register' component={EmployerRegister} />
+                    <Route path='/selection/talent-register' component={TalentRegister} />
+                </Switch>
+                
             </div>
         )
     }
 }
+
+export default EmployerTalentSelection;

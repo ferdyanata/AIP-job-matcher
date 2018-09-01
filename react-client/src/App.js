@@ -3,8 +3,9 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import AdvertisedPositions from './components/AvertisedPositions/AdvertisedPositions';
 import JobInfo from './components/JobInfo/JobInfo';
 import SideMenu from './components/SideMenu/SideMenu';
-import EmployerTalentSelection from './components/EmployerTalentSelection/EmployerTalentSelection';
-//Based of https://github.com/le-kang/AIP2018/blob/master/week04/react-router-example/src/App.js
+import Register from './components/Register/Register';
+
+//See https://github.com/le-kang/AIP2018/blob/master/week04/react-router-example/src/App.js for routing
 
 class App extends Component {
     render() {
@@ -16,11 +17,11 @@ class App extends Component {
                     </div>
                     <div class="twelve wide stretched column">
                         <h1>Job Matcher</h1>
+                        <Route path='/register' component={Register} />
                         <Switch>
-                            <Route path='/selection' component={EmployerTalentSelection} />
                             <Route path='/:usertype/positions' component={AdvertisedPositions} />
                             <Route path='/:usertype/job-info/:id' component={JobInfo} />
-                            <Route render={() => <Redirect to="/selection" />} />
+                            <Route render={() => <Redirect to="/register" />} />
                         </Switch>
                     </div>
                 </div>
