@@ -4,6 +4,7 @@ import AdvertisedPositions from './components/AvertisedPositions/AdvertisedPosit
 import JobInfo from './components/JobInfo/JobInfo';
 import SideMenu from './components/SideMenu/SideMenu';
 import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 
 //See https://github.com/le-kang/AIP2018/blob/master/week04/react-router-example/src/App.js for routing
 
@@ -17,11 +18,12 @@ class App extends Component {
                     </div>
                     <div class="twelve wide stretched column">
                         <h1>Job Matcher</h1>
-                        <Route path='/register' component={Register} />
+                        <Route path='/login' component={Login} />
                         <Switch>
+                            <Route path='/register' component={Register}/>
                             <Route path='/:usertype/positions' component={AdvertisedPositions} />
                             <Route path='/:usertype/job-info/:id' component={JobInfo} />
-                            <Route render={() => <Redirect to="/register" />} />
+                            <Route render={() => <Redirect to="/login" />} />
                         </Switch>
                     </div>
                 </div>
