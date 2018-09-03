@@ -22,13 +22,21 @@ router.get('/employer-register', function (req, res, next) {
 router.get('/get-employers', function (req, res, next) {
     // this needs to be replaced with the jsx registration page
     // res.send("employer register page");
-    Employer.find({}, function (err, allEmployers) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(allEmployers);
-        }
-    });
+
+    //TEST
+    res.json([{
+        companyName: "cool kids"
+    }, {
+        companyName: "wjfiwefef"
+    }]);
+
+    // Employer.find({}, function (err, allEmployers) {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         res.json(allEmployers);
+    //     }
+    // });
 });
 
 router.post('/employer-register', function (req, res, next) {
@@ -37,7 +45,6 @@ router.post('/employer-register', function (req, res, next) {
         lastName: req.body.lastName,
         email: req.body.email,
         phone: req.body.phone,
-        jobTitle: req.body.jobTitle,
         companyName: req.body.companyName
     });
 
