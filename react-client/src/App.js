@@ -5,13 +5,15 @@ import JobInfo from './components/JobInfo/JobInfo';
 import SideMenu from './components/SideMenu/SideMenu';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
+import { Provider } from 'react-redux';
+import store from './store/store'
 
 //See https://github.com/le-kang/AIP2018/blob/master/week04/react-router-example/src/App.js for routing
 
 class App extends Component {
     render() {
         return (
-            <div>
+            <Provider store ={store}>
                 <div class="ui grid">
                     <div class="four wide column">
                         <SideMenu />
@@ -27,7 +29,7 @@ class App extends Component {
                         </Switch>
                     </div>
                 </div>
-            </div>
+            </Provider>
         );
     }
 }

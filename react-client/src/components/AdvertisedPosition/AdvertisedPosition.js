@@ -5,11 +5,11 @@ export default class AdvertisedPosition extends React.Component {
     render() {
         return (
             <div>
-                <h3>{this.props.name}</h3>
+                <h3>{this.props.positionName}</h3>
                 <p>{this.props.description}</p>
                 <Link
                     to={{
-                        pathname: `/${this.props.usertype}/job-info/${this.props.name}`,
+                        pathname: `/${this.props.usertype}/job-info/${this.props.positionName}`,
                         }}
                 >
                     View
