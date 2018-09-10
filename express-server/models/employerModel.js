@@ -5,23 +5,12 @@ const Schema = mongoose.Schema;
  * construct an employer model
  */
 const employerSchema = new Schema({
+    firstName: String,
+    lastName:  String,
+    email: String,
+    phone: Number,
+    jobTitle: String,
     companyName: String,
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: true
-    }
 });
 
 /**

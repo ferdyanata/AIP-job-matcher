@@ -41,11 +41,13 @@ router.post('/employer-register', function (req, res, next) {
         companyName: req.body.companyName
     });
 
-    req.checkBody('firstName', 'Name is required').notEmpty();
+    req.checkBody('firstName', 'First name is required').notEmpty();
     req.checkBody('lastName', 'Last name is required').notEmpty();
     req.checkBody('email', 'Email is required').notEmpty();
     req.checkBody('email', 'Email is not valid').isEmail(); // check whether it is valid
     req.checkBody('phone', 'Phone is required').notEmpty();
+    req.checkBody('jobTitle', 'Job title is required').notEmpty();
+    req.checkBody('companyName', 'Company name is required').notEmpty();
 
     newUser.save().then(function (user) {
         res.send(user);
