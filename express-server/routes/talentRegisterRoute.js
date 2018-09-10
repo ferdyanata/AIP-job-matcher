@@ -29,13 +29,11 @@ router.post('/talent-register', function (req, res, next) {
     const fullName = req.body.fullName;
     const email = req.body.email;
     const password = req.body.password;
-    const password2 = req.body.password2;
 
     req.checkBody('fullName', 'First name and last name is required').notEmpty();
     req.checkBody('email', 'email is required').notEmpty();
     req.checkBody('email', 'email is not valid').isEmail(); // check whether it is valid
     req.checkBody('password', 'Password is required').notEmpty();
-    req.checkBody('password2', 'Password do not match').equals(req.body.password);
 
     let errors = req.validationErrors();
 
@@ -50,7 +48,6 @@ router.post('/talent-register', function (req, res, next) {
             fullName: fullName,
             email: email,
             password: password,
-            password2: password2
         });
 
         bcrypt.getSalt(10, function (err, salt) {
@@ -66,7 +63,7 @@ router.post('/talent-register', function (req, res, next) {
                     } else {
                         req.flash('success', 'You have successfully registered!');
                         // should redirect to the build portfolio page
-                        res.redirect('/AdvertisedPositions')
+                        res.send(newUser);
                     }
                 });
             });

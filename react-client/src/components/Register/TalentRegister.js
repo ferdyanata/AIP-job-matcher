@@ -9,32 +9,32 @@ export default class TalentRegister extends React.Component {
                     <h1>Talent Register</h1>
                     <div class='equal width fields'>
                         <div class='field'>
-                            <label for='form-input-control-first-name'>First name</label>
+                            <label for='first-name'>First name</label>
                             <div class='ui input'>
-                                <input type='text' id='form-input-control-first-name' placeholder='First name' />
+                                <input type='text' placeholder='First name' />
                             </div>
                         </div>
                         <div class='field'>
-                            <label for='form-input-control-last-name'>Last name</label>
+                            <label for='last-name'>Last name</label>
                             <div class='ui input'>
-                                <input type='text' id='form-input-control-last-name' placeholder='Last name' />
+                                <input type='text' placeholder='Last name' />
                             </div>
                         </div>
                         <div class='field'>
-                            <label for="email"><b>Email</b></label>
-                            <input type="text" placeholder="Enter Email" name="email" required />
+                            <label for="email">Email</label>
+                            <div class='ui input'>
+                                <input type="text" placeholder="Enter Email" name="email" required />
+                            </div>
                         </div>
                         <div class='field'>
-                            <label for="psw"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="psw" required />
-                        </div>
-                        <div class='field'>
-                            <label for="psw-repeat"><b>Repeat Password</b></label>
-                            <input type="password" placeholder="Repeat Password" name="psw-repeat" required />
+                        <label for="password">Password</label>
+                            <div class='ui input'>
+                                <input type="password" placeholder="Enter Password" name="password" required />
+                            </div>
                         </div>
                     </div>
                    
-                    <div>
+                    {/* <div>
                         <label for='skillsdropbox'><b>Skills</b></label>
                         <dropbox></dropbox>
                         <label for='skillsdropbox'><b>Skills</b></label>
@@ -47,8 +47,8 @@ export default class TalentRegister extends React.Component {
                     <div class='field'>
                         <label for='form-textarea-control-opinion'>Cover Letter</label>
                         <textarea id='form-textarea-control-opinion' placeholder='Opinion' rows='3'/>
-                    </div>
-                    
+                    </div> */}
+                    <br/>
                     <div class='field'>
                         <Link to="/talent/positions">
                             <button id='form-button-control-public' class='ui button' role='button'>
