@@ -9,6 +9,19 @@ const router = express.Router();
 const Employer = require('../models/employerModel.js');
 
 /**
+ * get all employers from the database
+ */
+router.get('/get-employers', function (req, res, next) {
+    Employer.find({}, function (err, allEmployers) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(allEmployers);
+        }
+    });
+});
+
+/**
  * display registration form
  */
 router.get('/employer-register', function (req, res, next) {
@@ -16,31 +29,8 @@ router.get('/employer-register', function (req, res, next) {
     res.send("employer register page");
 });
 
-/**
- * get all employers from the database
- */
-router.get('/get-employers', function (req, res, next) {
-    // this needs to be replaced with the jsx registration page
-    // res.send("employer register page");
-
-    //TEST
-    res.json([{
-        companyName: "cool kids"
-    }, {
-        companyName: "wjfiwefef"
-    }]);
-
-    // Employer.find({}, function (err, allEmployers) {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         res.json(allEmployers);
-    //     }
-    // });
-});
-
 router.post('/employer-register', function (req, res, next) {
-    const newUser = new Employer({
+    const newEmployer = new Employer({
         email: req.body.email,
         password: req.body.password,
         password2: req.body.password,
@@ -53,8 +43,8 @@ router.post('/employer-register', function (req, res, next) {
     req.checkBody('password2', 'Password do not match').equals(req.body.password);
     req.checkBody('companyName', 'Company name is required').notEmpty();
 
-    newUser.save().then(function (user) {
-        res.send(user);
+    newEmployer.save().then(function (employer) {
+        res.send(employer);
     });
 });
 

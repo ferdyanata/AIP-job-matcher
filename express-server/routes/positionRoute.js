@@ -13,28 +13,13 @@ const Position = require('../models/positionModel.js');
  * Useful for displaying available positions to talent
  */
 router.get('/get-positions', function (req, res, next) {
-    // Position.find({}, function (err, allPositions) {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         res.json(allPositions);
-    //     }
-    // });
-
-    //TEST
-    res.json([{
-        positionName: "ExpressJs",
-        description: "This is coming from the server."
-    }, {
-        positionName: "Junior programmer",
-        description: "Really cool position in a hip new office as a junior programmer. "
-    }, {
-        positionName: "Senior developer",
-        description: "Be a SENIOR developer, above all those FILTHY juniors."
-    }, {
-        positionName: "UX dude",
-        description: "Get to know our users from all angles. Find out their blood type and deepest secrets."
-    }]);
+    Position.find({}, function (err, allPositions) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(allPositions);
+        }
+    });
 });
 
 /**
@@ -54,7 +39,6 @@ router.get('/get-positions/:employerCompanyName', function (req, res, next) {
 });
 
 router.post('/add-position', function (req, res, next) {
-
     var positionToAdd = new Position({
         positionName: req.body.positionName,
         description: req.body.description,
