@@ -7,6 +7,10 @@ const path = require('path'); // included module with NodeJs
 const employerRegisterRoute = require('./routes/employerRegisterRoute'),
     talentRegisterRoute = require('./routes/talentRegisterRoute'),
     positionRoute = require('./routes/positionRoute');
+const expressValidator = require('express-validator');
+
+// validates checkBody in route pages.
+app.use(expressValidator());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 

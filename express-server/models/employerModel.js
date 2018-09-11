@@ -1,24 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+// const talentId = mongoose.model('talentId', talentId);
 
 /**
  * construct an employer model
  */
 const employerSchema = new Schema({
-    companyName: String,
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    phone: {
+    employerId: String,
+    email: String,
+    password: String,
+    companyName: {
         type: String,
         required: true
     }
