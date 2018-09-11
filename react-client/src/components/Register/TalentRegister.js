@@ -6,7 +6,7 @@ export default class TalentRegister extends React.Component {
         return (
             <div>
                 <form class='employee register form'>
-                    <h1>Employee Account</h1>
+                    <h1>Talent Register</h1>
                     <div class='equal width fields'>
                         <div class='field'>
                             <label for='form-input-control-first-name'>First name</label>

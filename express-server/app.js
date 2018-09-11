@@ -44,9 +44,9 @@ app.use(bodyParser.json());
 /**
  * route files
  */
+app.use('/api', positionRoute);
 app.use('/api', employerRegisterRoute),
     app.use('/api', talentRegisterRoute),
-    // app.use('/api', positionRoute);
 
 
     /**
