@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { employerRegister } from '../../actions/registerActions';
 import { connect } from 'react-redux';
+import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 class EmployerRegister extends React.Component {
 
@@ -45,9 +46,10 @@ class EmployerRegister extends React.Component {
     render() {
         return (
             <div>
-                <form class='employee register form' onSubmit={this.handleSubmit}>
+                {/* OLD -> <form class='employee register form' onSubmit={this.handleSubmit}> */}
+                <form class='ui form' onSubmit={this.handleSubmit}>
                     <h1>Employer Register</h1>
-                    <div class='equal width fields'>
+                    <div class='six wide field'>
                         <div class='field'>
                             <label for='company-name'>Company</label>
                             <div class='ui input'>
@@ -77,7 +79,6 @@ class EmployerRegister extends React.Component {
 
                 </form>
             </div>
-
         );
     }
 }
