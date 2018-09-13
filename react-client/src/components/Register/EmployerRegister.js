@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { employerRegister } from '../../actions/registerActions';
 import { connect } from 'react-redux';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 class EmployerRegister extends React.Component {
 

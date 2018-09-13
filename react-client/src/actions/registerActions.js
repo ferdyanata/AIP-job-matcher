@@ -12,11 +12,17 @@ export const talentRegister = talentData => dispatch => {
     fetch('/api/talent-register', requestOptions)
         .then(handleResponse)
         .then(
-            talent =>
-                dispatch({
+            talent => {
+                dispatch({  
                     type: TALENT_REGISTER,
                     payload: talent
-                })
+                });
+                history.push('/talent/positions');
+
+            },
+            error => {
+
+            }
     );
 };
 
