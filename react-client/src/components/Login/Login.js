@@ -55,7 +55,7 @@ export default class Login extends React.Component {
         return (
             <div>
                 <p>Don't have an account?</p>
-                <Link to='/register'>
+                <Link to='/register/talent-register'>
                     Register here
                 </Link>
                 <form class="ui form">
