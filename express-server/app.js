@@ -4,10 +4,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); // Assist with MongoDB connection
 const port = process.env.PORT || 4000;
 const path = require('path'); // included module with NodeJs
+const expressValidator = require('express-validator'); // uses checkBody function to validate fields
 const employerRegisterRoute = require('./routes/employerRegisterRoute'),
-    talentRegisterRoute = require('./routes/talentRegisterRoute'),
-    positionRoute = require('./routes/positionRoute');
+      talentRegisterRoute = require('./routes/talentRegisterRoute'),
+      positionRoute = require('./routes/positionRoute');
 
+// validates checkBody in route pages.
+app.use(expressValidator());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // load view engine
@@ -45,14 +48,14 @@ app.use(bodyParser.json());
  * route files
  */
 app.use('/api', positionRoute);
-app.use('/api', employerRegisterRoute),
-    app.use('/api', talentRegisterRoute),
+app.use('/api', employerRegisterRoute);
+app.use('/api', talentRegisterRoute);
 
 
-    /**
-     * set port for the host to listen to
-     */
-    app.listen(port, function () {
-        // Passing backtick/template strings in the method argument so we can embed expressions ${port}
-        console.log(`Listening on port ${port}...`)
-    });
+/**
+ * set port for the host to listen to
+ */
+app.listen(port, function () {
+    // Passing backtick/template strings in the method argument so we can embed expressions ${port}
+    console.log(`Listening on port ${port}...`)
+});

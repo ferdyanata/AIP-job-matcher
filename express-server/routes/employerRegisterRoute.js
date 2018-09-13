@@ -9,34 +9,24 @@ const router = express.Router();
 const Employer = require('../models/employerModel.js');
 
 /**
+ * get all employers from the database
+ */
+router.get('/get-employers', function (req, res, next) {
+    Employer.find({}, function (err, allEmployers) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(allEmployers);
+        }
+    });
+});
+
+/**
  * display registration form
  */
 router.get('/employer-register', function (req, res, next) {
     // this needs to be replaced with the jsx registration page
     res.send("employer register page");
-});
-
-/**
- * get all employers from the database
- */
-router.get('/get-employers', function (req, res, next) {
-    // this needs to be replaced with the jsx registration page
-    // res.send("employer register page");
-
-    //TEST
-    res.json([{
-        companyName: "cool kids"
-    }, {
-        companyName: "wjfiwefef"
-    }]);
-
-    // Employer.find({}, function (err, allEmployers) {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         res.json(allEmployers);
-    //     }
-    // });
 });
 
 router.post('/employer-register', function (req, res, next) {
@@ -47,11 +37,12 @@ router.post('/employer-register', function (req, res, next) {
         companyName: req.body.companyName
     });
 
-    // req.checkBody('email', 'Email is required').notEmpty();
-    // req.checkBody('email', 'Email is not valid').isEmail(); // check whether it is valid
-    // req.checkBody('password', 'Password is required').notEmpty();
-    // req.checkBody('password2', 'Password do not match').equals(req.body.password);
-    // req.checkBody('companyName', 'Company name is required').notEmpty();
+
+    req.checkBody('email', 'Email is required').notEmpty();
+    req.checkBody('email', 'Email is not valid').isEmail(); // check whether it is valid
+    req.checkBody('password', 'Password is required').notEmpty();
+    req.checkBody('password2', 'Password do not match').equals(req.body.password);
+    req.checkBody('companyName', 'Company name is required').notEmpty();
 
     newEmployer.save().then(function (employer) {
         res.send(employer);

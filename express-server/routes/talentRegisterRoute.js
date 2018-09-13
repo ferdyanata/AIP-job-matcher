@@ -7,7 +7,7 @@ const Talent = require('../models/talentModel.js');
  */
 router.get('/talent-register', function (req, res, next) {
     // this needs to be replaced with the jsx registration page
-    // res.send("talent register page");
+    res.send("talent register page");
 });
 
 /**
@@ -44,19 +44,19 @@ router.post('/talent-register', function (req, res, next) {
             errors: errors
         });
     } else {
-        let newUser = new Talent({
+        let newTalent = new Talent({
             fullName: fullName,
             email: email,
             password: password,
         });
 
         bcrypt.getSalt(10, function (err, salt) {
-            bcrypt.hash(newUser.password, salt, function (err, hash) {
+            bcrypt.hash(newTalent.password, salt, function (err, hash) {
                 if (err) {
                     console.log(err);
                 }
-                newUser.password = hash;
-                newUser.save(function (err) {
+                newTalent.password = hash;
+                newTalent.save(function (err) {
                     if (err) {
                         console.log(err);
                         return;
