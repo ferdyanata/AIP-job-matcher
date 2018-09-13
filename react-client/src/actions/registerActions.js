@@ -1,6 +1,6 @@
 import {TALENT_REGISTER} from './types';
 import {EMPLOYER_REGISTER} from './types';
-
+import history from '../helpers/history';
 
 export const talentRegister = talentData => dispatch => {
     const requestOptions = {
@@ -21,20 +21,25 @@ export const talentRegister = talentData => dispatch => {
 };
 
 export const employerRegister = employerData => dispatch => {
+    //Create POST request params containing the employer data that the user entered
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(employerData)
     };
 
+    //Call the express api, passing in the request params
     fetch('/api/employer-register', requestOptions)
         .then(handleResponse)
         .then(
             employer => {
+                //Dispatch the employer object returned by express, for the reducer to listen for
                 dispatch({
                     type: EMPLOYER_REGISTER,
                     payload: employer
-                })
+                });
+                //Take the employer to the homepage
+                history.push('/employer/positions');
             },
             error => {
                 
