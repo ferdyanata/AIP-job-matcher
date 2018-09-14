@@ -33,7 +33,7 @@ class AdvertisedPositions extends React.Component {
     
 }
 
-AdvertisedPositions.PropTypes = {
+AdvertisedPositions.propTypes = {
     fetchAllPositions: PropTypes.func.isRequired,
     positions: PropTypes.array.isRequired
 };

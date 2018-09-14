@@ -37,6 +37,7 @@ router.post('/employer-register', function (req, res, next) {
         companyName: req.body.companyName
     });
 
+
     req.checkBody('email', 'Email is required').notEmpty();
     req.checkBody('email', 'Email is not valid').isEmail(); // check whether it is valid
     req.checkBody('password', 'Password is required').notEmpty();
