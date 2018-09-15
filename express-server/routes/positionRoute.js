@@ -23,13 +23,27 @@ router.get('/get-positions', function (req, res, next) {
 });
 
 /**
+ * Get positions by its Id
+ * Useful for JobInfo
+ */
+router.get('/get-positon/:positionId', function (req, res, next) {
+    var positionId = req.params.positionId;
+    Position.findOne({positionId: positionId}, function(err, position) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(position);
+        }
+    });
+})
+
+/**
  * Get positions advertised by a specific employer from database
  * Useful for when displaying employers advertised positions
  */
-router.get('/get-positions/:employerCompanyName', function (req, res, next) {
-    var employerCompanyName = req.params.employerCompanyName;
-    //Assuming that the attribute employerCompanyName(FK) exists in positionModel.
-    Position.find({employerCompanyName: employerCompanyName}, function(err, positions) {
+router.get('/get-positions/:employerId', function (req, res, next) {
+    var employerId = req.params.employerId;
+    Position.find({employerId: employerId}, function(err, positions) {
         if (err) {
             console.log(err);
         } else {
@@ -43,22 +57,23 @@ router.post('/add-position', function (req, res, next) {
         positionName: req.body.positionName,
         description: req.body.description,
 
-        //Need to figure this one out.
-        desiredSkills: [{
-            skillName: req.body.skillName,
-            skillLevel: req.body.skillLevel
-        }],
+        // //Need to figure this one out.
+        // desiredSkills: [{
+        //     skillName: req.body.skillName,
+        //     skillLevel: req.body.skillLevel
+        // }],
 
-        creationDate: req.body.creationDate,
-        closingDate: req.body.closingDate
+        // creationDate: req.body.creationDate,
+        // closingDate: req.body.closingDate,
+        employerId: req.body.employerId
     });
 
     req.checkBody('positionName', 'Name is required').notEmpty();
     req.checkBody('description', 'Description is required').notEmpty();
-    req.checkBody('closingDate', 'Closing date is required').notEmpty();
+    // req.checkBody('closingDate', 'Closing date is required').notEmpty();
 
-    positionToAdd.save().then(function (user) {
-        res.send(positionToAdd);
+    positionToAdd.save().then(function (position) {
+        res.send(position);
     });
 });
 
