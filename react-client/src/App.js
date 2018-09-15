@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Router, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route, Router, Redirect } from 'react-router-dom';
 import AdvertisedPositions from './components/AvertisedPositions/AdvertisedPositions';
 import JobInfo from './components/JobInfo/JobInfo';
 import SideMenu from './components/SideMenu/SideMenu';
@@ -13,10 +13,10 @@ class App extends Component {
     render() {
         return (
             <div class="ui grid">
-                <div class="four wide column">
+                <div className="four wide column">
                     <SideMenu />
                 </div>
-                <div class="twelve wide stretched column">
+                <div className="twelve wide stretched column">
                     <h1>Job Matcher</h1>
                     <Router history={history}>
                         <Switch>

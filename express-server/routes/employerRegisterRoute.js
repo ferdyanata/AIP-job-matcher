@@ -33,7 +33,6 @@ router.post('/employer-register', function (req, res, next) {
     const newEmployer = new Employer({
         email: req.body.email,
         password: req.body.password,
-        password2: req.body.password,
         companyName: req.body.companyName
     });
 
@@ -41,12 +40,28 @@ router.post('/employer-register', function (req, res, next) {
     req.checkBody('email', 'Email is required').notEmpty();
     req.checkBody('email', 'Email is not valid').isEmail(); // check whether it is valid
     req.checkBody('password', 'Password is required').notEmpty();
-    req.checkBody('password2', 'Password do not match').equals(req.body.password);
     req.checkBody('companyName', 'Company name is required').notEmpty();
-
+    
     newEmployer.save().then(function (employer) {
         res.send(employer);
     });
+});
+
+router.post('/employer-login', function (req, res, next) {
+    const email = req.body.email;
+
+    Employer.findOne({ email: email })
+        .exec(function (err, employer) {
+            if (err){
+                console.log(err);
+            } else if (!employer) {
+                //employer with that email was not found
+                console.log('email not found');
+            } else {
+                //compare passwords with bcrypt.compare, if good
+                res.send(employer);
+            }
+        });
 });
 
 // allow other files to import this file

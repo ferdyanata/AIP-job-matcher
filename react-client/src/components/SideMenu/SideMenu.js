@@ -3,17 +3,17 @@ import React from 'react';
 export default class SideMenu extends React.Component {
     render() {
         return (
-            <div class="ui vertical fluid tabular menu">
-                <a class=" active item">
+            <div className="ui vertical fluid tabular menu">
+                <a className=" active item">
                     Roles
                     </a>
-                <a class="item">
+                <a className="item">
                     Account
                     </a>
-                <a class="item">
+                <a className="item">
                     Search
                     </a>
-                <a class="item">
+                <a className="item">
                     Applicants
                     </a>
             </div>

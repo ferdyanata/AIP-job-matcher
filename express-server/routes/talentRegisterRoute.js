@@ -26,49 +26,76 @@ router.get('/get-talents', function (req, res, next) {
 });
 
 router.post('/talent-register', function (req, res, next) {
-    const fullName = req.body.fullName;
-    const email = req.body.email;
-    const password = req.body.password;
 
-    req.checkBody('fullName', 'First name and last name is required').notEmpty();
+    const newTalent = new Talent({
+        fullName: (req.body.firstName + ' ' + req.body.lastName),
+        email: req.body.email,
+        password: req.body.password
+    });
+
+    req.checkBody('firstName', 'First name is required').notEmpty();
+    req.checkBody('lastName', 'First name is required').notEmpty();
     req.checkBody('email', 'email is required').notEmpty();
     req.checkBody('email', 'email is not valid').isEmail(); // check whether it is valid
     req.checkBody('password', 'Password is required').notEmpty();
 
-    let errors = req.validationErrors();
 
-    if (errors) {
-        // Need to create this
-        res.render('registerTalent', {
-            // render the errors onto the page
-            errors: errors
-        });
-    } else {
-        let newTalent = new Talent({
-            fullName: fullName,
-            email: email,
-            password: password,
-        });
+    newTalent.save().then(function (talent) {
+        res.send(talent);
+    });
 
-        bcrypt.getSalt(10, function (err, salt) {
-            bcrypt.hash(newTalent.password, salt, function (err, hash) {
-                if (err) {
-                    console.log(err);
-                }
-                newTalent.password = hash;
-                newTalent.save(function (err) {
-                    if (err) {
-                        console.log(err);
-                        return;
-                    } else {
-                        req.flash('success', 'You have successfully registered!');
-                        // should redirect to the build portfolio page
-                        res.send(newUser);
-                    }
-                });
-            });
+
+    // let errors = req.validationErrors();
+
+    // if (errors) {
+    //     // Need to create this
+    //     res.render('registerTalent', {
+    //         // render the errors onto the page
+    //         errors: errors
+    //     });
+    // } else {
+    //     let newTalent = new Talent({
+    //         fullName: fullName,
+    //         email: email,
+    //         password: password,
+    //     });
+
+    //     bcrypt.getSalt(10, function (err, salt) {
+    //         bcrypt.hash(newTalent.password, salt, function (err, hash) {
+    //             if (err) {
+    //                 console.log(err);
+    //             }
+    //             newTalent.password = hash;
+    //             newTalent.save(function (err) {
+    //                 if (err) {
+    //                     console.log(err);
+    //                     return;
+    //                 } else {
+    //                     req.flash('success', 'You have successfully registered!');
+    //                     // should redirect to the build portfolio page
+    //                     res.send(newUser);
+    //                 }
+    //             });
+    //         });
+    //     });
+    // }
+});
+
+router.post('/talent-login', function (req, res, next) {
+    const email = req.body.email;
+
+    Talent.findOne({ email: email })
+        .exec(function (err, talent) {
+            if (err){
+                console.log(err);
+            } else if (!talent) {
+                //talent with that email was not found
+                console.log('email not found');
+            } else {
+                //compare passwords with bcrypt.compare, if good
+                res.send(talent);
+            }
         });
-    }
 });
 
 // allow other files to import this file
