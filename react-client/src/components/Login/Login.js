@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { employerLogin, talentLogin } from '../../actions/loginActions';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
 
     constructor(props) {
         super(props);
@@ -58,7 +59,7 @@ export default class Login extends React.Component {
                 <Link to='/register/talent-register'>
                     Register here
                 </Link>
-                <form class="ui form">
+                <form class="ui form" onSubmit={this.handleSubmit}>
                     <h1>Log In</h1>
                     <div class='four wide field'>
                         <div class='field'>
@@ -78,7 +79,7 @@ export default class Login extends React.Component {
                             </div>
                         </div>
                         <div class='field'>
-                            <button id='form-button-control-public' class='ui button' role='button'>
+                            <button id='form-button-control-public' class='ui button'>
                                 Login
                             </button>
                         </div>
@@ -89,3 +90,9 @@ export default class Login extends React.Component {
     }
 
 }
+
+const mapStateToProps = state => ({
+
+});
+
+export default connect(mapStateToProps)(Login);

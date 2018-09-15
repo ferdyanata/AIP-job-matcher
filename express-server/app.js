@@ -52,6 +52,7 @@ app.use('/api', employerRegisterRoute);
 app.use('/api', talentRegisterRoute);
 
 
+
 /**
  * set port for the host to listen to
  */
