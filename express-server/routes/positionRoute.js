@@ -23,12 +23,12 @@ router.get('/get-positions', function (req, res, next) {
 });
 
 /**
- * Get positions by its Id
- * Useful for JobInfo
+ * Get position by its Id
  */
-router.get('/get-positon/:positionId', function (req, res, next) {
+router.get('/get-position/:positionId', function (req, res, next) {
     var positionId = req.params.positionId;
-    Position.findOne({positionId: positionId}, function(err, position) {
+    console.log("getting position by id "+ positionId);
+    Position.findOne({_id: positionId}, function(err, position) {
         if (err) {
             console.log(err);
         } else {

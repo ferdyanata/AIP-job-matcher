@@ -15,15 +15,13 @@ export const fetchAllPositions = () => dispatch => {
 export const fetchPosition = (positionId) => dispatch => {
     fetch(`/api/get-position/${positionId}`)
         .then(res => res.json())
-        .then(
-            position => {
-                dispatch({  
-                    type: FETCH_POSITION,
-                    payload: position
-                });
-            }
+        .then(position => 
+            dispatch({  
+                type: FETCH_POSITION,
+                payload: position
+            })
     );
-}
+};
 
 export const employerAddPosition = (position) => dispatch => {
     const requestOptions = {
