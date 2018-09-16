@@ -9,6 +9,7 @@ export default function(state = initialState, action) {
     switch (action.type) {
         case EMPLOYER_REGISTER:
             return {
+                // fetch all data from state
                 ...state,
                 //put the employer in the state so that we know they're logged in
                 employer: action.payload
@@ -17,7 +18,6 @@ export default function(state = initialState, action) {
         case TALENT_REGISTER:
             return {
                 ...state,
-                //put the employer in the state so that we know they're logged in
                 talent: action.payload
             };
 
