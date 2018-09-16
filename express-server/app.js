@@ -8,6 +8,7 @@ const path = require('path'); // included module with NodeJs
 const expressValidator = require('express-validator'); // uses checkBody function to validate fields
 const employerRegisterRoute = require('./routes/employerRegisterRoute'),
     talentRegisterRoute = require('./routes/talentRegisterRoute'),
+    talentLoginRoute = require('./routes/talentLoginRoute'),
     positionRoute = require('./routes/positionRoute');
 
 // validates checkBody in route pages.
@@ -28,6 +29,7 @@ app.get('/', function (req, res) {
  * connect to mongodb MLab
  */
 //const db = require('./config/database').mongoURI;
+mongoose.Promise = require('bluebird'); // A Promise library 
 mongoose
     //.connect(db, { useNewUrlParser: true })
     .connect('mongodb://localhost/job_seeker', { useNewUrlParser: true })
@@ -71,6 +73,7 @@ app.use(bodyParser.json());
 app.use('/api', positionRoute);
 app.use('/api', employerRegisterRoute);
 app.use('/api', talentRegisterRoute);
+app.use('/api', talentLoginRoute);
 
 /**
  * set port for the host to listen to
