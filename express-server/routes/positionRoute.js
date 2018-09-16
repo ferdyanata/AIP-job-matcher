@@ -12,7 +12,7 @@ const Position = require('../models/positionModel.js');
  * get all positions from the database
  * Useful for displaying available positions to talent
  */
-router.get('/get-positions', function (req, res, next) {
+router.get('/positions', function (req, res, next) {
     Position.find({}, function (err, allPositions) {
         if (err) {
             console.log(err);
@@ -26,7 +26,7 @@ router.get('/get-positions', function (req, res, next) {
  * Get positions advertised by a specific employer from database
  * Useful for when displaying employers advertised positions
  */
-router.get('/get-positions/:employerCompanyName', function (req, res, next) {
+router.get('/positions/:employerCompanyName', function (req, res, next) {
     var employerCompanyName = req.params.employerCompanyName;
     //Assuming that the attribute employerCompanyName(FK) exists in positionModel.
     Position.find({employerCompanyName: employerCompanyName}, function(err, positions) {
@@ -38,7 +38,7 @@ router.get('/get-positions/:employerCompanyName', function (req, res, next) {
     });
 });
 
-router.post('/add-position', function (req, res, next) {
+router.post('/position', function (req, res, next) {
     var positionToAdd = new Position({
         positionName: req.body.positionName,
         description: req.body.description,
