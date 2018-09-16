@@ -8,7 +8,7 @@ const path = require('path'); // included module with NodeJs
 const expressValidator = require('express-validator'); // uses checkBody function to validate fields
 const employerRegisterRoute = require('./routes/employerRegisterRoute'),
     talentRegisterRoute = require('./routes/talentRegisterRoute'),
-    talentLoginRoute = require('./routes/talentLoginRoute'),
+    loginRoute = require('./routes/loginRoute'),
     positionRoute = require('./routes/positionRoute');
 
 // validates checkBody in route pages.
@@ -73,7 +73,7 @@ app.use(bodyParser.json());
 app.use('/api', positionRoute);
 app.use('/api', employerRegisterRoute);
 app.use('/api', talentRegisterRoute);
-app.use('/api', talentLoginRoute);
+app.use('/api', loginRoute);
 
 /**
  * set port for the host to listen to
