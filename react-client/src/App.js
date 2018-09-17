@@ -1,24 +1,23 @@
-import React, { Component } from 'react';
-import { Switch, Route, Router, Redirect, withRouter } from 'react-router-dom';
-import AdvertisedPositions from './components/AvertisedPositions/AdvertisedPositions';
-import JobInfo from './components/JobInfo/JobInfo';
-import SideMenu from './components/SideMenu/SideMenu';
-import Register from './components/Register/Register';
-import Login from './components/Login/Login';
-import history from './helpers/history';
+import React from 'react';
 import Main from './components/Main/Main'
 import FooterLayout from './components/FooterLayout/FooterLayout'
 import HeaderLayout from './components/HeaderLayout/HeaderLayout';
 
 //See https://github.com/le-kang/AIP2018/blob/master/week04/react-router-example/src/App.js for routing
 
-const App = () => (
-    <div>
-      <HeaderLayout />
-      <Main />
-      <FooterLayout />
-    </div>
-  )
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <HeaderLayout />
+        <Main />
+        <FooterLayout />
+      </div>
+    );
+  }
+}
+
+export default App;
 
 // class App extends Component {
 //     render() {
@@ -43,8 +42,5 @@ const App = () => (
 //         );
 //     }
 // }
-
-
-export default App;
 
 
