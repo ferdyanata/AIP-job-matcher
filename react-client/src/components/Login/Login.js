@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { employerLogin, talentLogin } from '../../actions/loginActions';
 // import Login from './components/Login/Login';
@@ -60,7 +60,7 @@ class Login extends React.Component {
                 <Link to='/register/talent-register'>
                     Register here
                 </Link>
-                <form class="ui form">
+                <form class="ui form" onSubmit={this.handleSubmit}>
                     <h1>Log In</h1>
                     <div class='four wide field'>
                         <div class='field'>
@@ -80,7 +80,7 @@ class Login extends React.Component {
                             </div>
                         </div>
                         <div class='field'>
-                            <button id='form-button-control-public' class='ui button' role='button'>
+                            <button id='form-button-control-public' class='ui button'>
                                 Login
                             </button>
                         </div>
@@ -92,4 +92,8 @@ class Login extends React.Component {
     }
 }
 
-export default Login
+const mapStateToProps = state => ({
+
+});
+
+export default connect(mapStateToProps)(Login);

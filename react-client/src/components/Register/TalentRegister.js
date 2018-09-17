@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { talentRegister } from '../../actions/registerActions';
 import { connect } from 'react-redux';
 
@@ -77,7 +76,7 @@ class TalentRegister extends React.Component {
                         </div>
                     </div>
                     <div class='field'>
-                        <button id='form-button-control-public' class='ui button' role='button'>
+                        <button id='form-button-control-public' class='ui button'>
                             Register
                         </button>
                     </div>
