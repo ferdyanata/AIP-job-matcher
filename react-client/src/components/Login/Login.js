@@ -1,8 +1,10 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { employerLogin, talentLogin } from '../../actions/loginActions';
+// import Login from './components/Login/Login';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
 
     constructor(props) {
         super(props);
@@ -84,8 +86,10 @@ export default class Login extends React.Component {
                         </div>
                     </div>
                 </form>
+               
             </div>
         );
     }
-
 }
+
+export default Login

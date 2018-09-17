@@ -5,17 +5,22 @@ import EmployerRegister from './EmployerRegister';
 import { Tab } from 'semantic-ui-react';
 
 class Register extends React.Component {
+    constructor() {
+        super()
+
+    }
+
     render() {
-        const panes = [
-            { menuItem: 'Talent', render: () => <Tab.Pane attached={true}>Tab 1 Content</Tab.Pane> },
-            { menuItem: 'Employer', render: () => <Tab.Pane attached={true}>Tab 2 Content</Tab.Pane> },
+        var panes = [
+            { menuItem: 'Tab 1', render: () => <Tab.Pane attached={false}>Tab 1 Content</Tab.Pane> },
+            { menuItem: 'Tab 2', render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane> },
+            { menuItem: 'Tab 3', render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane> },
         ]
 
-        const TabExampleSecondaryPointing = () => (
+        var TabExampleSecondaryPointing = () => (
             <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
         )
         return (
-
             <div>
                 <div>
                     <div class='ui pointing secondary menu'>
@@ -31,14 +36,11 @@ class Register extends React.Component {
                         > Employer </Link>
                     </div>
                 </div>
-
                 <Switch>
                     <Route path='/register/employer-register' component={EmployerRegister} />
                     <Route path='/register/talent-register' component={TalentRegister} />
                 </Switch>
             </div>
-
-
         )
     }
 }
