@@ -13,7 +13,7 @@ export const fetchAllPositions = () => dispatch => {
 };
 
 export const fetchPosition = (positionId) => dispatch => {
-    fetch(`/api/get-position/${positionId}`)
+    fetch(`/api/positions/${positionId}`)
         .then(res => res.json())
         .then(position => 
             dispatch({  
@@ -30,7 +30,7 @@ export const employerAddPosition = (position) => dispatch => {
         body: JSON.stringify(position)
     };
 
-    fetch('/api/add-position', requestOptions)
+    fetch('/api/position', requestOptions)
         .then(res => res.json())
         .then(
             position => {
