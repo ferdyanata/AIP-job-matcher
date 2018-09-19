@@ -1,7 +1,8 @@
-import { FETCH_ALL_POSITIONS } from '../actions/types';
+import { FETCH_ALL_POSITIONS, FETCH_POSITION } from '../actions/types';
 
 const initialState = {
     items: [],
+    item: {}
 };
 
 export default function(state = initialState, action) {
@@ -11,6 +12,12 @@ export default function(state = initialState, action) {
                 ...state,
                 items: action.payload
             };
+        case FETCH_POSITION:
+            return {
+                ...state,
+                item: action.payload
+            };
+
 
         default: return state;
     }
