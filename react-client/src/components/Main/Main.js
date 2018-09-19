@@ -3,11 +3,15 @@
  */
 
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Router } from 'react-router-dom'
+import { Container } from 'semantic-ui-react'
 import Register from '../Register/Register'
 import Home from '../Home/Home'
 import Login from '../Login/Login'
-import { Container } from 'semantic-ui-react'
+import AdvertisedPositions from '../AdvertisedPositions/AdvertisedPositions'
+import JobInfo from '../JobInfo/JobInfo';
+import SideMenu from '../SideMenu/SideMenu';
+import EmployerAddPosition from '../EmployerAddPosition/EmployerAddPosition';
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -16,13 +20,16 @@ import { Container } from 'semantic-ui-react'
 // when the pathname is exactly the string "/"
 const Main = () => (
   <main>
-    <Switch>
-      <Route exact path='/' component={Home} />
-      <Container text style={{ marginTop: '7em' }}>
-        <Route path='/login' component={Login} />
-        <Route path='/register' component={Register} />
-      </Container>
-    </Switch>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Container text style={{ marginTop: '7em' }}>
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
+          <Route path='/:usertype/positions' component={AdvertisedPositions} />
+          <Route path='/:usertype/job-info/:id' component={JobInfo} />
+          <Route path='/employer/add-position' component={EmployerAddPosition} />
+        </Container>
+      </Switch>
   </main>
 )
 
