@@ -11,8 +11,7 @@ class AdvertisedPositions extends React.Component {
     componentWillMount() {
         this.props.fetchAllPositions();
     }
-
-
+    
     render() {
         const usertype = this.props.match.params.usertype;        
         return (

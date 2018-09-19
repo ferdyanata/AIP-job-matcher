@@ -2,7 +2,7 @@ import {FETCH_ALL_POSITIONS, FETCH_POSITION, EMPLOYER_ADD_POSITION} from './type
 import history from '../helpers/history';
 
 export const fetchAllPositions = () => dispatch => {
-    fetch('/api/get-positions')
+    fetch('/api/positions')
         .then(res => res.json())
         .then(positions =>
             dispatch({

@@ -12,7 +12,7 @@ const Position = require('../models/positionModel.js');
  * get all positions from the database
  * Useful for displaying available positions to talent
  */
-router.get('/get-positions', function (req, res, next) {
+router.get('/positions', function (req, res, next) {
     Position.find({}, function (err, allPositions) {
         if (err) {
             console.log(err);
@@ -25,7 +25,7 @@ router.get('/get-positions', function (req, res, next) {
 /**
  * Get position by its Id
  */
-router.get('/get-position/:positionId', function (req, res, next) {
+router.get('/positions/:positionId', function (req, res, next) {
     var positionId = req.params.positionId;
     console.log("getting position by id "+ positionId);
     Position.findOne({_id: positionId}, function(err, position) {
@@ -41,7 +41,7 @@ router.get('/get-position/:positionId', function (req, res, next) {
  * Get positions advertised by a specific employer from database
  * Useful for when displaying employers advertised positions
  */
-router.get('/get-positions/:employerId', function (req, res, next) {
+router.get('/positions/:employerId', function (req, res, next) {
     var employerId = req.params.employerId;
     Position.find({employerId: employerId}, function(err, positions) {
         if (err) {
@@ -52,7 +52,7 @@ router.get('/get-positions/:employerId', function (req, res, next) {
     });
 });
 
-router.post('/add-position', function (req, res, next) {
+router.post('/position', function (req, res, next) {
     var positionToAdd = new Position({
         positionName: req.body.positionName,
         description: req.body.description,
