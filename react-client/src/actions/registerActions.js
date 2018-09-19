@@ -18,7 +18,6 @@ export const talentRegister = talentData => dispatch => {
                     payload: talent
                 });
                 history.push('/talent/positions');
-
             },
             error => {
 

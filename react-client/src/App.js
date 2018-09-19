@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Router, Redirect } from 'react-router-dom';
-import AdvertisedPositions from './components/AvertisedPositions/AdvertisedPositions';
+import AdvertisedPositions from './components/AdvertisedPositions/AdvertisedPositions';
 import JobInfo from './components/JobInfo/JobInfo';
 import SideMenu from './components/SideMenu/SideMenu';
 import Register from './components/Register/Register';

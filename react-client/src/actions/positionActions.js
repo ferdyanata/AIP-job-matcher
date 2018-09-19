@@ -1,7 +1,7 @@
 import {FETCH_ALL_POSITIONS} from './types';
 
 export const fetchAllPositions = () => dispatch => {
-    fetch('/api/get-positions')
+    fetch('/api/positions')
         .then(res => res.json())
         .then(positions =>
             dispatch({
