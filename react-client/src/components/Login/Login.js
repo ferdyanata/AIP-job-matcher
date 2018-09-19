@@ -56,16 +56,12 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <p>Don't have an account?</p>
-                <Link to='/register/talent-register'>
-                    Register here
-                </Link>
                 <form class="ui form" onSubmit={this.handleSubmit}>
                     <h1>Log In</h1>
                     <div class='four wide field'>
-                        <div class='field'>
-                            <label for="employerCheckbox" >Employer?</label>
-                            <input type='checkbox' name ="employerCheckbox" onClick={this.toggleUserType.bind(this)}></input>
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" name ="employerCheckbox" onClick={this.toggleUserType.bind(this)}/>
+                            <label>Employer</label>
                         </div>
                         <div class='field'>
                             <label for="email"><b>Email</b></label>
