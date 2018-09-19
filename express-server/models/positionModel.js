@@ -13,7 +13,8 @@ const positionSchema = new Schema({
         skillLevel: Number
     }],
     creationDate: Date,
-    closingDate: Date
+    closingDate: Date,
+    employerId: String
 });
 
 

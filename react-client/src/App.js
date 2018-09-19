@@ -15,32 +15,5 @@ class App extends React.Component {
       </div>
     );
   }
-}
   
 export default App;
-
-// class App extends Component {
-//     render() {
-//         return (
-//             <div class="ui grid">
-//                 <div class="four wide column">
-//                     <SideMenu />
-//                 </div>
-//                 <div class="twelve wide stretched column">
-//                     <h1>Job Matcher</h1>
-//                     <Router history={history}>
-//                         <Switch>
-//                             <Route path='/login' component={Login} />
-//                             <Route path='/register' component={Register} />
-//                             <Route path='/:usertype/positions' component={AdvertisedPositions} />
-//                             <Route path='/:usertype/job-info/:id' component={JobInfo} />
-//                             <Route render={() => <Redirect to="/login" />} />
-//                         </Switch>
-//                     </Router>
-//                 </div>
-//             </div>
-//         );
-//     }
-// }
-
-

@@ -3,14 +3,15 @@ import AdvertisedPosition from '../AdvertisedPosition/AdvertisedPosition';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAllPositions } from '../../actions/positionActions';
+import { Link } from 'react-router-dom';
+
 
 class AdvertisedPositions extends React.Component {
 
     componentWillMount() {
         this.props.fetchAllPositions();
     }
-
-
+    
     render() {
         const usertype = this.props.match.params.usertype;        
         return (
@@ -24,8 +25,17 @@ class AdvertisedPositions extends React.Component {
                 )}
 
                 <br/>
-                {usertype === 'employer' ? ( <p>EMPLOYER hi</p>) : 
-                <p>Employees dont get to see who has applied! </p>}
+                {usertype === 'employer' ? ( 
+                    <div>
+                    <p>EMPLOYER hi</p>
+                        <Link to= '/employer/add-position'>
+                            <button id='form-button-control-public' class='ui button'>
+                                Add Position
+                            </button>
+                        </Link>
+                    </div>
+                    ) : 
+                <p>Employees dont get to add positions! </p>}
             </div>
         );
     }

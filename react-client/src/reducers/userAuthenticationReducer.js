@@ -24,7 +24,7 @@ export default function(state = initialState, action) {
         case EMPLOYER_LOGIN:
             return {
                 ...state,
-                emploter: action.payload
+                employer: action.payload
             };
         case TALENT_LOGIN: 
             return {
