@@ -5,16 +5,7 @@ import EmployerRegister from './EmployerRegister';
 
 class Register extends React.Component {
     render() {
-        // const panes = [
-        //     { menuItem: 'Talent', render: () => <Tab.Pane attached={true}>Tab 1 Content</Tab.Pane> },
-        //     { menuItem: 'Employer', render: () => <Tab.Pane attached={true}>Tab 2 Content</Tab.Pane> },
-        // ]
-
-        // const TabExampleSecondaryPointing = () => (
-        //     <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-        // )
         return (
-
             <div>
                 <div>
                     <div class='ui pointing secondary menu'>
@@ -30,14 +21,11 @@ class Register extends React.Component {
                         > Employer </Link>
                     </div>
                 </div>
-
                 <Switch>
                     <Route path='/register/employer-register' component={EmployerRegister} />
                     <Route path='/register/talent-register' component={TalentRegister} />
                 </Switch>
             </div>
-
-
         )
     }
 }

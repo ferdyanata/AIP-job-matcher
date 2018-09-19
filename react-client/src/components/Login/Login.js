@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { employerLogin, talentLogin } from '../../actions/loginActions';
+// import Login from './components/Login/Login';
 
 class Login extends React.Component {
 
@@ -85,10 +86,10 @@ class Login extends React.Component {
                         </div>
                     </div>
                 </form>
+               
             </div>
         );
     }
-
 }
 
 const mapStateToProps = state => ({
