@@ -1,6 +1,7 @@
 import {TALENT_REGISTER} from './types';
 import {EMPLOYER_REGISTER} from './types';
 import history from '../helpers/history';
+import { alertActions } from './alertActions';
 
 export const talentRegister = talentData => dispatch => {
     const requestOptions = {
@@ -20,7 +21,7 @@ export const talentRegister = talentData => dispatch => {
                 history.push('/talent/positions');
             },
             error => {
-
+                dispatch(alertActions.error(error));
             }
     );
 };
@@ -47,7 +48,7 @@ export const employerRegister = employerData => dispatch => {
                 history.push('/employer/positions');
             },
             error => {
-                
+                dispatch(alertActions.error(error));
             }
         );
 };
@@ -63,7 +64,7 @@ function handleResponse(response) {
             //     location.reload(true);
             // }
 
-            const error = (data && data.message) || response.statusText;
+            const error = data.msg;
             return Promise.reject(error);
         }
 
