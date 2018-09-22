@@ -27,15 +27,13 @@ class AdvertisedPositions extends React.Component {
                 <br/>
                 {usertype === 'employer' ? ( 
                     <div>
-                    <p>EMPLOYER hi</p>
                         <Link to= '/employer/add-position'>
                             <button id='form-button-control-public' class='ui button'>
                                 Add Position
                             </button>
                         </Link>
                     </div>
-                    ) : 
-                <p>Employees dont get to add positions! </p>}
+                    ) : null }
             </div>
         );
     }
