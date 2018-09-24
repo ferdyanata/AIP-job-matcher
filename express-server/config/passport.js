@@ -6,6 +6,10 @@ var TalentModel = require('../models/talentModel');
 var EmployerModel = require('../models/employerModel');
 var settings = require('../config/settings'); // get settings file
 
+/**
+ * this file is used for getting the user(s) by matching JWTToken with the token we get from the client.
+*/
+
 module.exports = function(passport) {
   var opts = {};
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme("jwt");
