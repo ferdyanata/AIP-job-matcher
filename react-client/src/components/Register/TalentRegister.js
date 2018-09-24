@@ -107,6 +107,7 @@ class TalentRegister extends React.Component {
                         </div>
                     </div>
                     <div className='six wide field'>
+                        <label for="skills">Skills</label>
                         <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange}/>
                     </div>
                     

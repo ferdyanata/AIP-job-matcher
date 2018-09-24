@@ -56,13 +56,7 @@ router.post('/position', function (req, res, next) {
     var positionToAdd = new Position({
         positionName: req.body.positionName,
         description: req.body.description,
-
-        // //Need to figure this one out.
-        // desiredSkills: [{
-        //     skillName: req.body.skillName,
-        //     skillLevel: req.body.skillLevel
-        // }],
-
+        desiredSkills: req.body.desiredSkills,
         // creationDate: req.body.creationDate,
         // closingDate: req.body.closingDate,
         employerId: req.body.employerId
