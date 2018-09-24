@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import { Switch, Route, Router } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 import Register from '../Register/Register'
 import Home from '../Home/Home'

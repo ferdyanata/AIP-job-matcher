@@ -1,12 +1,9 @@
 import React from 'react'
 import {
     Container,
-    Divider,
     Grid,
-    Image,
     Header,
     List,
-    Menu,
     Segment,
 } from 'semantic-ui-react'
 
