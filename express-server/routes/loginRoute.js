@@ -9,6 +9,7 @@ const Employer = require('../models/employerModel');
 
 router.post('/talent-login', function (req, res) {
     const email = req.body.email;
+
     Talent.findOne({
         email: email
     }, function (err, talent) {
@@ -21,15 +22,25 @@ router.post('/talent-login', function (req, res) {
             talent.comparePassword(req.body.password, function (err, isMatch) {
                 if (isMatch && !err) {
                     // if talent is found and password is right create a token
-                    var token = jwt.sign(talent.toJSON(), settings.secret);
-                    // return the information including token as JSON
-                    res.json({ success: true, token: 'JWT ' + token });
+                    // this is public information, so only sign in with id and email
+                    req.login(talent, { session: false }, (err) => {
+                        if (err) {
+                            res.send(err);
+                        }
+                        
+                        const token = jwt.sign({ talentId: talent._id, email: email }, settings.secret);
+                        // return the information including token as JSON
+                        res.json({ talent, success: true, token: token });
+                    });
+
                 } else {
                     res.status(401).send({ success: false, msg: 'Authentication failed. Wrong password.' });
                 }
             });
         }
     });
+
+
 });
 
 router.post('/employer-login', function (req, res) {
@@ -46,7 +57,7 @@ router.post('/employer-login', function (req, res) {
             employer.comparePassword(req.body.password, function (err, isMatch) {
                 if (isMatch && !err) {
                     // if talent is found and password is right create a token
-                    var token = jwt.sign(talent.toJSON(), settings.secret);
+                    const token = jwt.sign(talent.toJSON(), settings.secret);
                     // return the information including token as JSON
                     res.json({ success: true, token: 'JWT ' + token });
                 } else {
@@ -56,5 +67,19 @@ router.post('/employer-login', function (req, res) {
         }
     });
 });
+
+getToken = function (headers) {
+    if (headers && headers.authorization) {
+        var parted = headers.authorization.split(' ');
+        if (parted.length === 2) {
+            return parted[1];
+        } else {
+            return null;
+        }
+    } else {
+        return null;
+    }
+};
+
 
 module.exports = router;

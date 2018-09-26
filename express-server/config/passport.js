@@ -15,7 +15,7 @@ module.exports = function(passport) {
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme("jwt");
   opts.secretOrKey = settings.secret;
   passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-    TalentModel.findOne({_id: jwt_payload._id}, function(err, user) {
+    TalentModel.findOne({talentId: jwt_payload.id, email: email}, function(err, user) {
           if (err) {
               return done(err, false);
           }
@@ -27,7 +27,7 @@ module.exports = function(passport) {
       });
   }));
   passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-    EmployerModel.findOne({_id: jwt_payload._id}, function(err, user) {
+    EmployerModel.findOne({id: jwt_payload.id}, function(err, user) {
           if (err) {
               return done(err, false);
           }
