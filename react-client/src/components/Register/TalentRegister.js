@@ -1,7 +1,8 @@
 import React from 'react';
 import { talentRegister } from '../../actions/registerActions';
 import { connect } from 'react-redux';
-
+import { Dropdown } from 'semantic-ui-react';
+import { skills } from '../../data/skills';
 
 class TalentRegister extends React.Component {
     constructor() {
@@ -13,13 +14,15 @@ class TalentRegister extends React.Component {
                 firstName: '',
                 lastName: '',
                 email: '',
-                password: ''
+                password: '',
+                skills: [] 
             },
             submitted: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSkillsChange = this.handleSkillsChange.bind(this);
     }
 
     handleChange(event) {
@@ -29,6 +32,28 @@ class TalentRegister extends React.Component {
             talentToRegister: {
                 ...talentToRegister,
                 [name]: value
+            }
+        });
+    }
+
+    handleSkillsChange(event, data) {
+
+        //The values selected by the user in the dropdown
+        var valuesFromDropdown = data.value;
+
+        //skills to insert into our talentToRegister object
+        var skills = [];
+
+        //copy data to our skills array
+        for (var i in valuesFromDropdown) {
+            skills[i] = valuesFromDropdown[i];
+        }
+
+        const { talentToRegister } = this.state;
+        this.setState({
+            talentToRegister: {
+                ...talentToRegister,
+                skills: skills
             }
         });
     }
@@ -49,6 +74,7 @@ class TalentRegister extends React.Component {
             <div>
                 <form class='ui form' onSubmit={this.handleSubmit}>
                     <h1>Talent Register</h1>
+                    <div className='ui grid'>
                     <div class='six wide field'>
                         <div class='field'>
                             <label for='firstName'>First name</label>
@@ -74,11 +100,17 @@ class TalentRegister extends React.Component {
                                 <input type="password" placeholder="Enter Password" name="password" required onChange={this.handleChange}/>
                             </div>
                         </div>
+                        <div class='field'>
+                            <button id='form-button-control-public' class='ui button'>
+                                Register
+                            </button>
+                        </div>
                     </div>
-                    <div class='field'>
-                        <button id='form-button-control-public' class='ui button'>
-                            Register
-                        </button>
+                    <div className='six wide field'>
+                        <label for="skills">Skills</label>
+                        <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange}/>
+                    </div>
+                    
                     </div>
                 </form>
             </div>
