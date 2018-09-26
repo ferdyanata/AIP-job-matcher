@@ -34,7 +34,7 @@ router.post('/talent-register', function(req, res){
     const fullName = (req.body.firstName + ' ' + req.body.lastName);
     const email = req.body.email;
     const password = req.body.password;
-
+    const skills = req.body.skills;
     // error handler if user did not fill registration form
     if (!fullName || !password || !email) {
         res.json({success: false, msg: 'Please enter your name, email and password.'});
@@ -43,7 +43,8 @@ router.post('/talent-register', function(req, res){
         var newUser = new Talent({
           fullName: fullName,
           email: email,
-          password: password
+          password: password,
+          skills: skills
         });
         // save the user
         newUser.save(function(err) {

@@ -10,3 +10,9 @@ export const EMPLOYER_LOGIN = "EMPLOYER_LOGIN";
 export const TALENT_LOGIN = "TALENT_LOGIN";
 
 export const APPLY_TO_POSITION = "APPLY_TO_POSITION";
+
+export const LOGIN_FAILED = "LOGIN_FAILED";
+
+export const ALERT_SUCCESS = 'ALERT_SUCCESS';
+export const ALERT_ERROR = 'ALERT_ERROR';
+export const ALERT_CLEAR = 'ALERT_CLEAR';
