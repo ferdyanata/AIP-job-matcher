@@ -49,7 +49,7 @@ router.post('/employer-register', function (req, res, next) {
                 // if err, display Email already exists in the database
                 return res.json({ success: false, msg: 'Email already exists.' });
             } else {
-                // this will sign the entire information in newUser object 
+                // this will sign the information publicly 
                 const token = jwt.sign({ companyName: companyName, email: email }, settings.secret);
                 // return the information including token 
                 res.json({ newUser, success: true, msg: 'Successful created new user.', token: token });
