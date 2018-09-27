@@ -27,7 +27,7 @@ router.post('/employer-login', function (req, res) {
                         if (err) {
                             res.send(err);
                         } else {
-                            const token = jwt.sign({ email: email }, settings.secret);
+                            const token = jwt.sign({ email: email }, settings.secret, { expiresIn: '120s' });
                             // return the information including token as JSON
                             res.json({ employer, success: true, msg: 'Successfully logged in!', token: token });
                         }
@@ -61,7 +61,7 @@ router.post('/talent-login', function (req, res) {
                         if (err) {
                             res.send(err);
                         } else {
-                            const token = jwt.sign({ talentId: talent._id, email: email }, settings.secret);
+                            const token = jwt.sign({ talentId: talent._id, email: email }, settings.secret, { expiresIn: '120s' });
                             // return the information including token as JSON
                             res.json({ talent, success: true, token: token });
                         }
