@@ -72,8 +72,14 @@ app.use(bodyParser.json());
  * route files
  */
 app.use('/api', positionRoute);
+passport.authenticate('jwt', {session: false}, positionRoute);
+
 app.use('/api', employerRegisterRoute);
+passport.authenticate('jwt', {session: false}, employerRegisterRoute);
+
 app.use('/api', talentRegisterRoute);
+passport.authenticate('jwt', {session: false}, talentRegisterRoute);
+
 app.use('/api', loginRoute);
 passport.authenticate('jwt', { session: false}, loginRoute);
 
