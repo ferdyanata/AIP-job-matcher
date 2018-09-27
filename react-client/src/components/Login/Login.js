@@ -12,7 +12,7 @@ class Login extends React.Component {
                 email: '',
                 password: ''
             },
-            usertype: 'talent' 
+            usertype: 'talent'
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,8 +21,10 @@ class Login extends React.Component {
     toggleUserType() {
         if (this.state.usertype === 'talent') {
             this.setState({ usertype: 'employer' });
+
         } else {
             this.setState({ usertype: 'talent' });
+
         }
     }
 
