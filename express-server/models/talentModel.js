@@ -6,6 +6,9 @@ var bcrypt = require('bcrypt-nodejs');
  * construct talent model
  */
 const talentSchema = new Schema({
+    talentId: {
+        type: String,
+    },
     fullName: {
         type: String,
         required: true
