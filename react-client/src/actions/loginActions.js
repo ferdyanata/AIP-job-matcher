@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import {EMPLOYER_LOGIN, TALENT_LOGIN, LOGIN_FAILED} from './types';
 import history from '../helpers/history';
@@ -22,7 +21,9 @@ export function employerLogin(data){
                     type: LOGIN_FAILED,
                     payload: error
                 });
-                dispatch(alertActions.error(error));
+                console.log(error);
+                //Message is tempoorary till its fixed
+                dispatch(alertActions.error('Login failed'));
             }
         );
     }
@@ -45,7 +46,9 @@ export function talentLogin(data){
                     type: LOGIN_FAILED,
                     payload: error
                 });
-                dispatch(alertActions.error(error));
+                console.log(error);
+                //Message is tempoorary till its fixed
+                dispatch(alertActions.error('Login failed'));
             }
         );
     }

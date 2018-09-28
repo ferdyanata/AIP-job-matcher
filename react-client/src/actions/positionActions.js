@@ -14,6 +14,8 @@ export const fetchAllPositions = () => dispatch => {
 };
 
 export const fetchPosition = (positionId) => dispatch => {
+    var token = localStorage.getItem('jwtToken');
+    console.log(token);
     fetch(`/api/positions/${positionId}`)
         .then(res => res.json())
         .then(position =>
