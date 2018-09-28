@@ -2,6 +2,7 @@ import { TALENT_REGISTER } from './types';
 import { EMPLOYER_REGISTER } from './types';
 import history from '../helpers/history';
 import axios from 'axios';
+import { alertActions } from './alertActions';
 
 export function talentRegister(data) {
     return dispatch => {
@@ -14,7 +15,12 @@ export function talentRegister(data) {
                 payload: talent
             });
             history.push('/talent/positions');
-        });
+        },
+        error => {
+                dispatch(alertActions.error(error));
+            }
+        );
+        );
     }
 }
 
@@ -30,9 +36,14 @@ export function employerRegister(data) {
             });
             //Take the employer to the homepage
             history.push('/employer/positions');
-        });
+        },
+        error => {
+                dispatch(alertActions.error(error));
+            }
+        );
     }
 }
+
 
 // export const employerRegister = employerData => dispatch => {
 //     //Create POST request params containing the employer data that the user entered
@@ -41,25 +52,6 @@ export function employerRegister(data) {
 //         headers: { 'Content-Type': 'application/json' },
 //         body: JSON.stringify(employerData)
 //     };
-
-//     //Call the express api, passing in the request params
-//     fetch('/api/employer-register', requestOptions)
-//         .then(handleResponse)
-//         .then(
-//             employer => {
-//                 //Dispatch the employer object returned by express, for the reducer to listen for
-//                 dispatch({
-//                     type: EMPLOYER_REGISTER,
-//                     payload: employer
-//                 });
-//                 //Take the employer to the homepage
-//                 history.push('/employer/positions');
-//             },
-//             error => {
-
-//             }
-//         );
-// };
 
 
 function handleResponse(response) {
@@ -72,7 +64,7 @@ function handleResponse(response) {
             //     location.reload(true);
             // }
 
-            const error = (data && data.message) || response.statusText;
+            const error = data.msg;
             return Promise.reject(error);
         }
 

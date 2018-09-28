@@ -10,7 +10,8 @@ const expressValidator = require('express-validator'); // uses checkBody functio
 const employerRegisterRoute = require('./routes/employerRegisterRoute'),
     talentRegisterRoute = require('./routes/talentRegisterRoute'),
     loginRoute = require('./routes/loginRoute'),
-    positionRoute = require('./routes/positionRoute');
+    positionRoute = require('./routes/positionRoute'),
+    applicationRoute = require('./routes/applicationRoute');
 
 // validates checkBody in route pages.
 app.use(expressValidator());
@@ -82,6 +83,9 @@ passport.authenticate('jwt', {session: false}, talentRegisterRoute);
 
 app.use('/api', loginRoute);
 passport.authenticate('jwt', { session: false}, loginRoute);
+
+app.use('/api', applicationRoute);
+
 
 /**
  * set port for the host to listen to

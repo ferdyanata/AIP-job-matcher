@@ -22,10 +22,7 @@ const talentSchema = new Schema({
         required: true
     },
     bio : String,
-    skills: [{
-        skillName: String,
-        skillLevel: Number
-    }] 
+    skills: [] 
 });
 
 talentSchema.pre('save', function (next) {

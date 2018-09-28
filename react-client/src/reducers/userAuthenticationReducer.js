@@ -1,4 +1,4 @@
-import {EMPLOYER_REGISTER, TALENT_REGISTER, EMPLOYER_LOGIN, TALENT_LOGIN} from '../actions/types';
+import {EMPLOYER_REGISTER, TALENT_REGISTER, EMPLOYER_LOGIN, TALENT_LOGIN, LOGIN_FAILED} from '../actions/types';
 const initialState = {
     //These represent the logged in user. they should only be ONE of these, the other should be null
     employer: [],
@@ -31,6 +31,8 @@ export default function(state = initialState, action) {
                 ...state,
                 talent: action.payload
             };
+        case LOGIN_FAILED:
+            return {};
         default: return state;
     }
 }

@@ -7,11 +7,7 @@ const Schema = mongoose.Schema;
 const positionSchema = new Schema({
     positionName: String,
     description: String,
-    desiredSkills: [{
-        skillName: String,
-        //Between 1-4. 1 = beginnner, 4 = expert
-        skillLevel: Number
-    }],
+    desiredSkills: [],
     creationDate: Date,
     closingDate: Date,
     employerId: String
