@@ -1,26 +1,27 @@
-import {FETCH_ALL_POSITIONS, FETCH_POSITION, EMPLOYER_ADD_POSITION} from './types';
+import { FETCH_ALL_POSITIONS, FETCH_POSITION, EMPLOYER_ADD_POSITION } from './types';
 import history from '../helpers/history';
 
 export const fetchAllPositions = () => dispatch => {
     fetch('/api/positions')
         .then(res => res.json())
-        .then(positions =>
+        .then(positions => {
+            localStorage.getItem('jwtToken', positions)
             dispatch({
                 type: FETCH_ALL_POSITIONS,
                 payload: positions
-            })
-    );
+            });
+        });
 };
 
 export const fetchPosition = (positionId) => dispatch => {
     fetch(`/api/positions/${positionId}`)
         .then(res => res.json())
-        .then(position => 
-            dispatch({  
+        .then(position =>
+            dispatch({
                 type: FETCH_POSITION,
                 payload: position
             })
-    );
+        );
 };
 
 export const employerAddPosition = (position) => dispatch => {
@@ -34,14 +35,14 @@ export const employerAddPosition = (position) => dispatch => {
         .then(res => res.json())
         .then(
             position => {
-                dispatch({  
+                dispatch({
                     type: EMPLOYER_ADD_POSITION,
                     payload: position
                 });
                 history.push('/employer/positions');
             },
-        error => {
+            error => {
 
-        }
-    );
+            }
+        );
 };

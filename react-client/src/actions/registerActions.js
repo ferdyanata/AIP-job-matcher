@@ -1,57 +1,56 @@
-import {TALENT_REGISTER} from './types';
-import {EMPLOYER_REGISTER} from './types';
+import { TALENT_REGISTER } from './types';
+import { EMPLOYER_REGISTER } from './types';
 import history from '../helpers/history';
+import axios from 'axios';
 import { alertActions } from './alertActions';
 
-export const talentRegister = talentData => dispatch => {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(talentData)
-    };
-    
-    fetch('/api/talent-register', requestOptions)
-        .then(handleResponse)
-        .then(
-            talent => {
-                dispatch({  
-                    type: TALENT_REGISTER,
-                    payload: talent
-                });
-                history.push('/talent/positions');
-            },
-            error => {
-                dispatch(alertActions.error(error));
-            }
-    );
-};
-
-export const employerRegister = employerData => dispatch => {
-    //Create POST request params containing the employer data that the user entered
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(employerData)
-    };
-
-    //Call the express api, passing in the request params
-    fetch('/api/employer-register', requestOptions)
-        .then(handleResponse)
-        .then(
-            employer => {
-                //Dispatch the employer object returned by express, for the reducer to listen for
-                dispatch({
-                    type: EMPLOYER_REGISTER,
-                    payload: employer
-                });
-                //Take the employer to the homepage
-                history.push('/employer/positions');
-            },
-            error => {
+export function talentRegister(data) {
+    return dispatch => {
+        return axios.post('/api/talent-register', data).then(res => {
+            const token = res.data.token;
+            localStorage.setItem('jwtToken', token);
+        }).then(talent => {
+            dispatch({
+                type: TALENT_REGISTER,
+                payload: talent
+            });
+            history.push('/talent/positions');
+        },
+        error => {
                 dispatch(alertActions.error(error));
             }
         );
-};
+    }
+}
+
+export function employerRegister(data) {
+    return dispatch => {
+        return axios.post('/api/employer-register', data).then(res => {
+            const token = res.data.token;
+            localStorage.setItem('jwtToken', token);
+        }).then(employer => {
+            dispatch({
+                type: EMPLOYER_REGISTER,
+                payload: employer
+            });
+            //Take the employer to the homepage
+            history.push('/employer/positions');
+        },
+        error => {
+                dispatch(alertActions.error(error));
+            }
+        );
+    }
+}
+
+
+// export const employerRegister = employerData => dispatch => {
+//     //Create POST request params containing the employer data that the user entered
+//     const requestOptions = {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(employerData)
+//     };
 
 
 function handleResponse(response) {
