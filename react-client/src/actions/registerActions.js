@@ -20,7 +20,6 @@ export function talentRegister(data) {
                 dispatch(alertActions.error(error));
             }
         );
-        );
     }
 }
 

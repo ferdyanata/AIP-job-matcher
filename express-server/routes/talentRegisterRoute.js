@@ -43,7 +43,7 @@ router.post('/talent-register', function (req, res) {
         var newUser = new Talent({
             fullName: fullName,
             email: email,
-            password: password
+            password: password,
             skills: skills
         });
         // save the user onto the database
