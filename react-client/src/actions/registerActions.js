@@ -9,6 +9,9 @@ export function talentRegister(data) {
         return axios.post('/api/talent-register', data).then(res => {
             const token = res.data.token;
             localStorage.setItem('jwtToken', token);
+            //George's temp fix
+           localStorage.setItem('user_id', res.data.newUser._id);
+           localStorage.setItem('user_type', 'talent');
         }).then(talent => {
             dispatch({
                 type: TALENT_REGISTER,
@@ -28,6 +31,9 @@ export function employerRegister(data) {
         return axios.post('/api/employer-register', data).then(res => {
             const token = res.data.token;
             localStorage.setItem('jwtToken', token);
+            //George's temp fix
+           localStorage.setItem('user_id', res.data.newUser._id);
+           localStorage.setItem('user_type', 'employer');
         }).then(employer => {
             dispatch({
                 type: EMPLOYER_REGISTER,
