@@ -11,7 +11,7 @@ router.post('/application', function (req, res, next) {
         // applicationDate: req.body.applicationDate
     });
 
-    req.checkBody('messageToEmployer', 'Meesage is required').notEmpty();
+    req.checkBody('messageToEmployer', 'Message is required').notEmpty();
 
     applicationToSubmit.save().then(function (application) {
         res.send(application);
