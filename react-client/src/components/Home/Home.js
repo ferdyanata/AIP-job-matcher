@@ -79,7 +79,6 @@ class DesktopContainer extends Component {
             style={{ minHeight: 700, padding: '1em 0em' }}
             vertical
           >
-            */}
             <HomepageHeading />
           </Segment>
         </Visibility>
