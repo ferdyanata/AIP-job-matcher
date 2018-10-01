@@ -1,29 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class AppliedMatchedDetailsItem extends React.Component {
     render() {
+        var { talentId, message } = this.props;
+
         return (
             <tr>
-                <td><img src="/images/avatar2/small/lena.png" class="ui mini rounded image" alt="img"/></td>
-                <td>{this.props.employeeName}</td>
-                <td class="center aligned"> 
-                    {this.props.applied ? <i class="large green checkmark icon"/> : <i/>}
+                <td></td>
+                <td>
+                    {/* <Link
+                        to={{
+                            // this will link to the user profile details and their skills
+                            pathname: `/job-info/${this.props._id}`,
+                        }}
+                    >
+                        Ferdy {talentName}
+                    </Link> */}
+                    Ferdy {talentId}
                 </td>
-                <td class="center aligned"> 
-                    {this.props.matched ? <i class="large green checkmark icon"/> : <i/>}
+                <td class="center aligned">
+                    this is a message {message}
                 </td>
                 <td>
-                    <button>ACCEPT</button>
-                    or
-                    <button>DECLINE</button>
+
                 </td>
             </tr>
         );
-    }
-
-    checkIfApplied(){
-        if (this.props.applied){
-            return <i class="large green checkmark icon"/>
-        }
     }
 }
