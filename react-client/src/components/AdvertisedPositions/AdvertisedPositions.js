@@ -2,18 +2,31 @@ import React from 'react';
 import AdvertisedPosition from '../AdvertisedPosition/AdvertisedPosition';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAllPositions } from '../../actions/positionActions';
+import { fetchAllPositions, fetchEmployersPositions } from '../../actions/positionActions';
 import { Link } from 'react-router-dom';
+import history from '../../helpers/history'
 
 
 class AdvertisedPositions extends React.Component {
 
     componentWillMount() {
-        this.props.fetchAllPositions();
+        if (!localStorage.getItem('user_id') || !localStorage.getItem('user_type')) {
+            history.push('/');
+            console.log('invalid session');
+        } else {
+            if (localStorage.getItem('user_type') === 'employer') {
+                this.props.fetchEmployersPositions(localStorage.getItem('user_id'));
+            }else {
+                this.props.fetchAllPositions();
+            }
+        }
     }
+
+   
     
     render() {
-        const usertype = this.props.match.params.usertype;        
+        
+        const usertype = localStorage.getItem('user_type');
         return (
             <div class="ui segment">
                 <h2> Advertised Positions </h2>
@@ -43,6 +56,7 @@ class AdvertisedPositions extends React.Component {
 
 AdvertisedPositions.propTypes = {
     fetchAllPositions: PropTypes.func.isRequired,
+    fetchEmployersPositions: PropTypes.func.isRequired,
     positions: PropTypes.array.isRequired
 };
 
@@ -50,4 +64,4 @@ const mapStateToProps = state => ({
     positions: state.positions.items
 });
 
-export default connect(mapStateToProps, {fetchAllPositions})(AdvertisedPositions);
+export default connect(mapStateToProps, {fetchAllPositions, fetchEmployersPositions})(AdvertisedPositions);

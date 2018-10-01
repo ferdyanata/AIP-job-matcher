@@ -17,7 +17,7 @@ export function talentRegister(data) {
                 type: TALENT_REGISTER,
                 payload: talent
             });
-            history.push('/talent/positions');
+            history.push('/positions');
         },
         error => {
                 dispatch(alertActions.error(error));
@@ -40,7 +40,7 @@ export function employerRegister(data) {
                 payload: employer
             });
             //Take the employer to the homepage
-            history.push('/employer/positions');
+            history.push('/positions');
         },
         error => {
                 dispatch(alertActions.error(error));

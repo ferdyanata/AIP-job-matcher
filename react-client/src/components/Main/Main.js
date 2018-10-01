@@ -19,8 +19,8 @@ const Main = () => (
         <Container text style={{ marginTop: '7em' }}>
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
-          <Route path='/:usertype/positions' component={AdvertisedPositions} />
-          <Route path='/:usertype/job-info/:id' component={JobInfo} />
+          <Route path='/positions' component={AdvertisedPositions} />
+          <Route path='/job-info/:id' component={JobInfo} />
           <Route path='/employer/add-position' component={EmployerAddPosition} />
         </Container>
       </Switch>

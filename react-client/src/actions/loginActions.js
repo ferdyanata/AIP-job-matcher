@@ -17,7 +17,7 @@ export function employerLogin(data){
                 type: EMPLOYER_LOGIN,
                 payload: employer
             });
-            history.push('/employer/positions');
+            history.push('/positions');
         },
         error => {
                 dispatch({
@@ -46,7 +46,7 @@ export function talentLogin(data){
                 type: TALENT_LOGIN,
                 payload: talent
             });
-            history.push('/talent/positions');
+            history.push('/positions');
         },
         error => {
                 dispatch({

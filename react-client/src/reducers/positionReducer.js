@@ -1,8 +1,8 @@
-import { FETCH_ALL_POSITIONS, FETCH_POSITION } from '../actions/types';
+import { FETCH_ALL_POSITIONS, FETCH_POSITION, FETCH_EMPLOYERS_POSITIONS} from '../actions/types';
 
 const initialState = {
     items: [],
-    item: {}
+    item: {},
 };
 
 export default function(state = initialState, action) {
@@ -17,7 +17,11 @@ export default function(state = initialState, action) {
                 ...state,
                 item: action.payload
             };
-
+        case FETCH_EMPLOYERS_POSITIONS:
+            return {
+                ...state,
+                items: action.payload
+            };
 
         default: return state;
     }

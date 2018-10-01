@@ -1,4 +1,4 @@
-import { FETCH_ALL_POSITIONS, FETCH_POSITION, EMPLOYER_ADD_POSITION } from './types';
+import { FETCH_ALL_POSITIONS,FETCH_EMPLOYERS_POSITIONS, FETCH_POSITION, EMPLOYER_ADD_POSITION } from './types';
 import history from '../helpers/history';
 
 export const fetchAllPositions = () => dispatch => {
@@ -8,6 +8,18 @@ export const fetchAllPositions = () => dispatch => {
             localStorage.getItem('jwtToken', positions)
             dispatch({
                 type: FETCH_ALL_POSITIONS,
+                payload: positions
+            });
+        });
+};
+
+export const fetchEmployersPositions = (employerId) => dispatch => {
+    fetch(`/api/employer_positions/${employerId}`)
+        .then(res => res.json())
+        .then(positions => {
+            console.log(positions);
+            dispatch({
+                type: FETCH_EMPLOYERS_POSITIONS,
                 payload: positions
             });
         });
@@ -41,7 +53,7 @@ export const employerAddPosition = (position) => dispatch => {
                     type: EMPLOYER_ADD_POSITION,
                     payload: position
                 });
-                history.push('/employer/positions');
+                history.push('/positions');
             },
             error => {
 

@@ -1,6 +1,8 @@
 //Action names go here
 
 export const FETCH_ALL_POSITIONS = 'FETCH_ALL_POSITIONS';
+export const FETCH_EMPLOYERS_POSITIONS = 'FETCH_EMPLOYERS_POSITIONS';
+
 export const FETCH_POSITION = 'FETCH_POSITION';
 export const EMPLOYER_ADD_POSITION = 'EMPLOYER_ADD_POSITION';
 
@@ -16,3 +18,5 @@ export const LOGIN_FAILED = "LOGIN_FAILED";
 export const ALERT_SUCCESS = 'ALERT_SUCCESS';
 export const ALERT_ERROR = 'ALERT_ERROR';
 export const ALERT_CLEAR = 'ALERT_CLEAR';
+
+

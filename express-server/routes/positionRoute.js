@@ -41,7 +41,7 @@ router.get('/positions/:positionId', function (req, res, next) {
  * Get positions advertised by a specific employer from database
  * Useful for when displaying employers advertised positions
  */
-router.get('/positions/:employerId', function (req, res, next) {
+router.get('/employer_positions/:employerId', function (req, res, next) {
     var employerId = req.params.employerId;
     Position.find({employerId: employerId}, function(err, positions) {
         if (err) {
