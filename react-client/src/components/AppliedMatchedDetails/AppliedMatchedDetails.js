@@ -10,15 +10,7 @@ import { fetchAllApplications } from '../../actions/applicationActions'
 class AppliedMatchedDetails extends React.Component {
 
     componentWillMount() {
-        // if (!localStorage.getItem('user_id') || !localStorage.getItem('user_type')) {
-        //     history.push('/');
-        //     console.log('invalid session');
-        // } if (localStorage.getItem('user_type') === 'employer') {
-        //     this.props.fetchAllPositions((localStorage.getItem('user_id'));
-
-        // }
         this.props.fetchAllApplications();
-
     }
 
     render() {
@@ -28,23 +20,20 @@ class AppliedMatchedDetails extends React.Component {
                 <table className="ApplicantionMatched">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Applicant's Name</th>
-                            <th></th>
-                            <th></th>
+                            <th>Received Message</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.applications.map(applications =>
-                            <div>
-                                <AppliedMatchedDetailsItem {...applications} usertype={usertype}/>
-
-                                <br />
-                            </div>
+                            <td>
+                                <div>
+                                    <AppliedMatchedDetailsItem {...applications} usertype={usertype} />
+                                </div>
+                            </td>
                         )}
                     </tbody>
                 </table>
-                <br />
             </div>
         );
     }

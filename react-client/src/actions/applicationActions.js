@@ -12,12 +12,11 @@ export const fetchAllApplications = (application) => dispatch => {
     fetch('/api/applications', requestOptions)
         .then(res => res.json())
         .then(applications => {
-            localStorage.getItem('jwtToken', applications)
+            localStorage.setItem('jwtToken', applications)
             dispatch({
                 type: FETCH_ALL_APPLICATIONS,
                 payload: applications
             });
-            history.push('/positions');
         })
 }
 
