@@ -51,5 +51,5 @@ export const checkIfTalentApplied = (talentId, positionId) => dispatch => {
             application => {
                 console.log(application);
             }
-        )
+        );
 }
