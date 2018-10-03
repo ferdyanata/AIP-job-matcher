@@ -1,5 +1,5 @@
 import React from 'react';
-import AppliedMatchedDetails from "../AppliedMatchedDetails/AppliedMatchedDetails";
+import Applicants from "../Applicants/Applicants";
 import PositionApplication from "../PositionApplication/PositionApplication";
 import { connect } from 'react-redux';
 import { fetchPosition } from '../../actions/positionActions';
@@ -18,7 +18,7 @@ class JobInfo extends React.Component {
                 <h3>{this.props.position.positionName}</h3>
                 <p>{this.props.position.description}</p>
                 <br/>
-                {usertype === 'employer' ? ( <AppliedMatchedDetails/>) : <PositionApplication position={this.props.position}/>}
+                {usertype === 'employer' ? ( <Applicants />) : <PositionApplication position={this.props.position}/>}
                                      
             </div>
         );
