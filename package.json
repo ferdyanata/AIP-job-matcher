@@ -5,6 +5,8 @@
   "scripts": {
     "server": "npm start --prefix express-server",
     "client": "npm start --prefix react-client",
+    "server-install": "npm install --prefix express-server",
+    "client-install": "npm install --prefix react-client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {

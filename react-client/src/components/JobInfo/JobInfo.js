@@ -12,7 +12,7 @@ class JobInfo extends React.Component {
     }
 
     render() {
-        const usertype = this.props.match.params.usertype;
+        const usertype = localStorage.getItem('user_type');
         return (
             <div class="ui segment">
                 <h3>{this.props.position.positionName}</h3>

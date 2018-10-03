@@ -24,6 +24,7 @@ class PositionApplication extends React.Component {
             application: {
                 ...application,
                 positionId: this.props.position._id,
+                talentId: localStorage.getItem('user_id'),
                 [name]: value
             }
         });

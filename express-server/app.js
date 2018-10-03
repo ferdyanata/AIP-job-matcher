@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); // Assist with MongoDB connection
 const port = process.env.PORT || 4000;
 const logger = require('morgan');
+const passport = require('passport');
 const path = require('path'); // included module with NodeJs
 const expressValidator = require('express-validator'); // uses checkBody function to validate fields
 const employerRegisterRoute = require('./routes/employerRegisterRoute'),
@@ -72,10 +73,19 @@ app.use(bodyParser.json());
  * route files
  */
 app.use('/api', positionRoute);
+passport.authenticate('jwt', {session: false}, positionRoute);
+
 app.use('/api', employerRegisterRoute);
+passport.authenticate('jwt', {session: false}, employerRegisterRoute);
+
 app.use('/api', talentRegisterRoute);
+passport.authenticate('jwt', {session: false}, talentRegisterRoute);
+
 app.use('/api', loginRoute);
+passport.authenticate('jwt', { session: false}, loginRoute);
+
 app.use('/api', applicationRoute);
+
 
 /**
  * set port for the host to listen to

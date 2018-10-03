@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { employerAddPosition } from '../../actions/positionActions';
 import { Dropdown } from 'semantic-ui-react';
 import { skills } from '../../data/skills';
+import history from '../../helpers/history';
 
 class EmployerAddPosition extends React.Component {
 
@@ -12,13 +13,22 @@ class EmployerAddPosition extends React.Component {
             positionToAdd: {
                 positionName: '',
                 description: '',
-                employerId: '',
+                employerId: localStorage.getItem('user_id'),
                 desiredSkills: []
             },
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSkillsChange = this.handleSkillsChange.bind(this);
+    }
+
+    //Check if users session is valid
+    componentDidMount() {
+        if (!localStorage.getItem('user_id') || !localStorage.getItem('user_type')) {
+            history.push('/');
+            console.log('invalid session');
+        }
+
     }
 
     handleChange(event) {

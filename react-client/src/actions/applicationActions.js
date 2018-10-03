@@ -22,3 +22,15 @@ export const applyToPosition = (application) => dispatch => {
         }
     );
 };
+
+export const checkIfTalentApplied = (talentId, positionId) => dispatch => {
+    console.log(talentId);
+    console.log(positionId);
+    fetch(`/api/application/${talentId}/${positionId}`)
+        .then(res => res.json())
+        .then(
+            application => {
+                console.log(application);
+            }
+        )
+}

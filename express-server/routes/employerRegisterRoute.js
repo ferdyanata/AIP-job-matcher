@@ -1,12 +1,18 @@
 const express = require('express');
-
-/**
- * creating an express.router() allows us to access its HTTP methods. 
- * (GET, POST, PUT and DELETE)
- */
-
+const passport = require('passport');
+require('../config/passport')(passport);
+const settings = require('../config/settings');
+var jwt = require('jsonwebtoken');
 const router = express.Router();
 const Employer = require('../models/employerModel.js');
+
+/**
+ * display registration form
+ */
+router.get('/employer-register', function (req, res, next) {
+    // this needs to be replaced with the jsx registration page
+    res.send("employer register page");
+});
 
 /**
  * get all employers from the database
@@ -21,47 +27,36 @@ router.get('/get-employers', function (req, res, next) {
     });
 });
 
-/**
- * display registration form
- */
-router.get('/employer-register', function (req, res, next) {
-    // this needs to be replaced with the jsx registration page
-    res.send("employer register page");
-});
 
 router.post('/employer-register', function (req, res, next) {
-    const newEmployer = new Employer({
-        email: req.body.email,
-        password: req.body.password,
-        companyName: req.body.companyName
-    });
-
-
-    req.checkBody('email', 'Email is required').notEmpty();
-    req.checkBody('email', 'Email is not valid').isEmail(); // check whether it is valid
-    req.checkBody('password', 'Password is required').notEmpty();
-    req.checkBody('companyName', 'Company name is required').notEmpty();
-    
-    newEmployer.save().then(function (employer) {
-        res.send(employer);
-    });
-});
-
-router.post('/employer-login', function (req, res, next) {
+    const companyName = req.body.companyName;
     const email = req.body.email;
+    const password =  req.body.password;
 
-    Employer.findOne({ email: email })
-        .exec(function (err, employer) {
-            if (err){
-                console.log(err);
-            } else if (!employer) {
-                //employer with that email was not found
-                console.log('email not found');
-            } else {
-                //compare passwords with bcrypt.compare, if good
-                res.send(employer);
-            }
+    // error handler if user did not fill registration form
+    if (!email || !password || !companyName) {
+        res.json({ success: false, msg: 'Please enter your company name, email and password.' });
+    } else {
+        // create new user object
+        var newUser = new Employer({
+            companyName: companyName,
+            email: email,
+            password: password
         });
+        // save the user onto database
+        newUser.save(function (err) {
+            if (err) {
+                // if err, display Email already exists in the database
+                return res.json({ success: false, msg: 'Email already exists.' });
+            } else {
+                // this will sign the information publicly 
+                const token = jwt.sign({ companyName: companyName, email: email }, settings.secret);
+                // return the information including token 
+                res.json({ newUser, success: true, msg: 'Successful created new user.', token: token });
+            }
+
+        });
+    }
 });
 
 // allow other files to import this file

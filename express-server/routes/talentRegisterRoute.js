@@ -7,6 +7,14 @@ const router = express.Router();
 const Talent = require('../models/talentModel.js');
 
 /**
+ * display registration form
+ */
+router.get('/talent-register', function (req, res, next) {
+    // this needs to be replaced with the jsx registration page
+    res.render('HelloMessage');
+});
+
+/**
  * get all talents from the database
  */
 router.get('/talents', function (req, res, next) {
@@ -16,44 +24,40 @@ router.get('/talents', function (req, res, next) {
         if (err) {
             console.log(err);
         } else {
+            // return all talents from database
             res.json(allTalents);
         }
     });
 });
 
-/**
- * display registration form
- */
-router.get('/talent-register', function (req, res, next) {
-    // this needs to be replaced with the jsx registration page
-    res.render('HelloMessage');
-});
-
-
-router.post('/talent-register', function(req, res){
+router.post('/talent-register', function (req, res) {
     const fullName = (req.body.firstName + ' ' + req.body.lastName);
     const email = req.body.email;
     const password = req.body.password;
     const skills = req.body.skills;
     // error handler if user did not fill registration form
     if (!fullName || !password || !email) {
-        res.json({success: false, msg: 'Please enter your name, email and password.'});
-      } else {
-        // save user
+        res.json({ success: false, msg: 'Please enter your name, email and password.' });
+    } else {
+        // save user onto the database
         var newUser = new Talent({
-          fullName: fullName,
-          email: email,
-          password: password,
-          skills: skills
+            fullName: fullName,
+            email: email,
+            password: password,
+            skills: skills
         });
-        // save the user
-        newUser.save(function(err) {
-          if (err) {
-            return res.json({success: false, msg: 'Username already exists.'});
-          }
-          res.json({success: true, msg: 'Successful created new user.'});
+        // save the user onto the database
+        newUser.save(function (err) {
+            if (err) {
+                return res.json({ success: false, msg: 'Username already exists.' });
+            } else {
+                const token = jwt.sign({fullName: fullName, email: email}, settings.secret);
+                // return the information including token
+                res.json({ newUser, success: true, msg: 'Successful created new user.', token: token });
+            }
+
         });
-      }
+    }
 });
 
 // allow other files to import this file
