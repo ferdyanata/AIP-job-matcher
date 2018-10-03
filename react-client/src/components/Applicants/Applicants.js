@@ -1,5 +1,5 @@
 import React from 'react';
-import AppliedMatchedDetailsItem from './AppliedMatchedDetailsItem';
+import ApplicantsItem from './ApplicantsItem';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import history from '../../helpers/history';
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { fetchAllApplications } from '../../actions/applicationActions'
 
 
-class AppliedMatchedDetails extends React.Component {
+class Applicants extends React.Component {
 
     componentWillMount() {
         this.props.fetchAllApplications();
@@ -28,7 +28,7 @@ class AppliedMatchedDetails extends React.Component {
                         {this.props.applications.map(applications =>
                             <td>
                                 <div>
-                                    <AppliedMatchedDetailsItem {...applications} usertype={usertype} />
+                                    <ApplicantsItem {...applications} usertype={usertype} />
                                 </div>
                             </td>
                         )}
@@ -39,7 +39,7 @@ class AppliedMatchedDetails extends React.Component {
     }
 }
 
-AppliedMatchedDetails.propTypes = {
+Applicants.propTypes = {
     fetchAllApplications: PropTypes.func.isRequired,
     applications: PropTypes.array.isRequired
 };
@@ -49,4 +49,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, { fetchAllApplications })(AppliedMatchedDetails)
+export default connect(mapStateToProps, { fetchAllApplications })(Applicants)

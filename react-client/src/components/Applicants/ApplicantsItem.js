@@ -12,25 +12,23 @@ export default class AppliedMatchedDetailsItem extends React.Component {
         };
 
         return (
-            <div>
-                <tr>
-                    <td>
-                        {/* <Link
+
+            <tr>
+                <td>
+                    <Link
                         to={{
                             // this will link to the user profile details and their skills
                             pathname: `/job-info/${this.props._id}`,
                         }}
                     >
-                        Ferdy {talentName}
-                    </Link> */}
                         {positionId}
-                    </td>
-                    <br />
-                    <td style={pStyle}>
-                        {messageToEmployer}
-                    </td>
-                </tr>
-            </div>
+                    </Link>
+                </td>
+                <br />
+                <td style={pStyle}>
+                    {messageToEmployer}
+                </td>
+            </tr>
         );
     }
 }
