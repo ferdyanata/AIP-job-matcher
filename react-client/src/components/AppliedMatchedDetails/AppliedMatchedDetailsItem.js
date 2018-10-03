@@ -1,29 +1,36 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import '../../css/AppliedMatchedDetailsItem.css';
 
 export default class AppliedMatchedDetailsItem extends React.Component {
     render() {
-        return (
-            <tr>
-                <td><img src="/images/avatar2/small/lena.png" class="ui mini rounded image" alt="img"/></td>
-                <td>{this.props.employeeName}</td>
-                <td class="center aligned"> 
-                    {this.props.applied ? <i class="large green checkmark icon"/> : <i/>}
-                </td>
-                <td class="center aligned"> 
-                    {this.props.matched ? <i class="large green checkmark icon"/> : <i/>}
-                </td>
-                <td>
-                    <button>ACCEPT</button>
-                    or
-                    <button>DECLINE</button>
-                </td>
-            </tr>
-        );
-    }
+        var { positionId, messageToEmployer } = this.props;
 
-    checkIfApplied(){
-        if (this.props.applied){
-            return <i class="large green checkmark icon"/>
-        }
+        const pStyle = {
+            fontSize: '15px',
+            textAlign: 'center'
+        };
+
+        return (
+            <div>
+                <tr>
+                    <td>
+                        {/* <Link
+                        to={{
+                            // this will link to the user profile details and their skills
+                            pathname: `/job-info/${this.props._id}`,
+                        }}
+                    >
+                        Ferdy {talentName}
+                    </Link> */}
+                        {positionId}
+                    </td>
+                    <br />
+                    <td style={pStyle}>
+                        {messageToEmployer}
+                    </td>
+                </tr>
+            </div>
+        );
     }
 }

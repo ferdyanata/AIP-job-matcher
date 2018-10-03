@@ -35,9 +35,9 @@ export function employerLogin(data){
 export function talentLogin(data){
     return dispatch => {
         return axios.post('/api/talent-login', data).then(res => {
-            console.log(res.data);
            const token = res.data.token;
            localStorage.setItem('jwtToken', token);
+           console.log(res.data);
            //George's temp fix
            localStorage.setItem('user_id', res.data.talent._id);
            localStorage.setItem('user_type', 'talent');

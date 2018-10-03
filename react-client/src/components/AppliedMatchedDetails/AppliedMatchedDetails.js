@@ -1,43 +1,52 @@
 import React from 'react';
-import AppliedMatchedDetailsItem from './AppliedMatchedDetailsItem'
+import AppliedMatchedDetailsItem from './AppliedMatchedDetailsItem';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import history from '../../helpers/history';
+import { Link } from 'react-router-dom';
+import { fetchAllApplications } from '../../actions/applicationActions'
 
-export default class AppliedMatchedDetails extends React.Component {
+
+class AppliedMatchedDetails extends React.Component {
+
+    componentWillMount() {
+        this.props.fetchAllApplications();
+    }
+
     render() {
+        const usertype = localStorage.getItem('user_type');
         return (
             <div>
-                <table class="Matches">
+                <table className="ApplicantionMatched">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Applied?</th>
-                            <th>Matched?</th>
+                            <th>Applicant's Name</th>
+                            <th>Received Message</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {employeeAppliedMatchedData.map( employee =>
-                            <AppliedMatchedDetailsItem {...employee}/>
+                        {this.props.applications.map(applications =>
+                            <td>
+                                <div>
+                                    <AppliedMatchedDetailsItem {...applications} usertype={usertype} />
+                                </div>
+                            </td>
                         )}
                     </tbody>
                 </table>
-                <br/>
             </div>
         );
     }
 }
 
-let employeeAppliedMatchedData = [
-    {employeeName: "Ferdy",
-    applied: true,
-    matched: true},
-    {employeeName: "John Smiths Chips",
-    applied: true,
-    matched: false},
-    {employeeName: "George Mclewqeqweq",
-    applied: false,
-    matched: true},
-    {employeeName: "Brendan",
-    applied: false,
-    matched: true},
-    
-]
+AppliedMatchedDetails.propTypes = {
+    fetchAllApplications: PropTypes.func.isRequired,
+    applications: PropTypes.array.isRequired
+};
+
+const mapStateToProps = state => ({
+    applications: state.applications.items
+});
+
+
+export default connect(mapStateToProps, { fetchAllApplications })(AppliedMatchedDetails)
