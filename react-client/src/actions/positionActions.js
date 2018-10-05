@@ -27,7 +27,6 @@ export const fetchEmployersPositions = (employerId) => dispatch => {
 
 export const fetchPosition = (positionId) => dispatch => {
     var token = localStorage.getItem('jwtToken');
-    console.log(token);
     fetch(`/api/positions/${positionId}`)
         .then(res => res.json())
         .then(position =>
@@ -59,4 +58,27 @@ export const employerAddPosition = (position) => dispatch => {
 
             }
         );
+};
+
+export const employerEditPosition = (position) => dispatch => {
+    // const requestOptions = {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(position)
+    // };
+
+    // fetch('/api/position', requestOptions)
+    //     .then(res => res.json())
+    //     .then(
+    //         position => {
+    //             dispatch({
+    //                 type: EMPLOYER_ADD_POSITION,
+    //                 payload: position
+    //             });
+    //             history.push('/positions');
+    //         },
+    //         error => {
+
+    //         }
+    //     );
 };
