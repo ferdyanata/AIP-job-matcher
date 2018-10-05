@@ -6,7 +6,6 @@ import { alertActions } from '../../actions/alertActions';
 class PositionApplication extends React.Component {
 
     constructor(props) {
-        console.log(props);
         super(props);
         this.state = {
             application: {
@@ -38,7 +37,6 @@ class PositionApplication extends React.Component {
         const { application } = this.state;
         const { dispatch } = this.props;
         if (application.messageToEmployer) {
-            console.log('Apply submit');
             dispatch(applyToPosition(application));
         } else {
             dispatch(alertActions.error('Please write a message for the employer.'));
@@ -68,9 +66,4 @@ class PositionApplication extends React.Component {
     }
     
 }
-
-const mapStateToProps = state => ({
-    // submitted: 
-});
-
-export default connect(mapStateToProps)(PositionApplication);
+export default connect()(PositionApplication);

@@ -31,7 +31,6 @@ class JobInfo extends React.Component {
                     this.setState({
                         applied: payload
                     });
-                    console.log(application);
                 }
             );
         }   
@@ -44,10 +43,7 @@ class JobInfo extends React.Component {
                 <h3>{this.props.position.positionName}</h3>
                 <p>{this.props.position.description}</p>
                 <br/>
-                {usertype === 'employer' ? ( <AppliedMatchedDetails/>) : <Application position = {this.props.position} applied = {this.state.applied}/> //<PositionApplication position={this.props.position}/>
-                
-                 }
-                                     
+                {usertype === 'employer' ? ( <AppliedMatchedDetails/>) : <Application position = {this.props.position} applied = {this.state.applied}/>}
             </div>
         );
     }
