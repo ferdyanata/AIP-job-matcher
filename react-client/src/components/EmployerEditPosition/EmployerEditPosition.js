@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { employerEditPosition } from '../../actions/positionActions';
+import { employerEditPosition, employerDeletePosition } from '../../actions/positionActions';
 import { Dropdown } from 'semantic-ui-react';
 import { skills } from '../../data/skills';
 import history from '../../helpers/history';
@@ -22,6 +22,7 @@ class EmployerEditPosition extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSkillsChange = this.handleSkillsChange.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     //Check if users session is valid
@@ -32,6 +33,7 @@ class EmployerEditPosition extends React.Component {
         }
 
     }
+
 
     handleChange(event) {
         const { name, value } = event.target;
@@ -74,6 +76,12 @@ class EmployerEditPosition extends React.Component {
         }
     }
 
+    handleDelete(event) {
+        console.log('delete');
+        const { dispatch } = this.props;
+        dispatch(employerDeletePosition(this.props.match.params.id));
+    }
+
     render() {
         const {position} = this.props.location.state;
         return (
@@ -98,12 +106,17 @@ class EmployerEditPosition extends React.Component {
                             <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange} defaultValue={position.desiredSkills}/>
                         </div>  
                         <div class='field'>
-                            <button id='form-button-control-public' class='ui button'>
+                            <button id='form-button-control-public' class='ui primary button'>
                                 Edit
                             </button>
                         </div>
                     </div>
                 </form>
+
+                <button class='ui icon button red' onClick={(e) => { if (window.confirm('Are you sure you wish to delete this position?')) this.handleDelete(e) }}>
+                    <i class="trash icon"></i>
+                </button>
+
             </div>
         );
     }

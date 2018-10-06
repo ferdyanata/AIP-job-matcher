@@ -16,24 +16,28 @@ class JobInfo extends React.Component {
 
     render() {
         const usertype = localStorage.getItem('user_type');
-        return (
-            <div class="ui segment">
-                <h3>{this.props.position.positionName}</h3>
-                <p>{this.props.position.description}</p>
-                <br/>
-                {usertype === 'employer' ? 
-                    ( 
-                    <div>
-                        <EmployerEditPositionButton position={this.props.position}/> 
-                        <AppliedMatchedDetails/>
-                    </div>
-                    ) 
-                    :
-                     <PositionApplication position={this.props.position}/>
-                }
-                                     
-            </div>
-        );
+        if (this.props.position) {
+            return (
+                <div class="ui segment">
+                    <h3>{this.props.position.positionName}</h3>
+                    <p>{this.props.position.description}</p>
+                    <br/>
+                    {usertype === 'employer' ? 
+                        ( 
+                        <div>
+                            <EmployerEditPositionButton position={this.props.position}/> 
+                            <AppliedMatchedDetails/>
+                        </div>
+                        ) 
+                        :
+                        <PositionApplication position={this.props.position}/>
+                    }
+                                        
+                </div>
+            );
+        } else {
+        return ( <div>Position does not exist.</div>);
+        }
     }
 }
 

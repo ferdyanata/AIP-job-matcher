@@ -75,7 +75,23 @@ export const employerEditPosition = (position, positionId) => dispatch => {
                     type: EMPLOYER_EDIT_POSITION,
                     payload: position
                 });
-                history.goBack();
+                history.replace(`/job-info/${positionId}`);
+            },
+            error => {
+                console.log(error);
+            }
+        );
+};
+
+export const employerDeletePosition = (positionId) => dispatch => {
+    const requestOptions = {
+        method: 'DELETE'
+    };
+    fetch(`/api/delete-position/${positionId}`, requestOptions)
+        .then(
+            deleted => {
+                console.log(deleted);
+                history.replace('/positions');
             },
             error => {
                 console.log(error);

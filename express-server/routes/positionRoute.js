@@ -73,7 +73,7 @@ router.post('/position', function (req, res, next) {
 
 router.put('/edit-position/:positionId', function(req, res, next){
     var positionId = req.params.positionId;
-    
+
     req.checkBody('positionName', 'Name is required').notEmpty();
     req.checkBody('description', 'Description is required').notEmpty();
 
@@ -82,6 +82,17 @@ router.put('/edit-position/:positionId', function(req, res, next){
             console.log(err);
         } else {
             res.json(updatedPosition);
+        }
+    })
+});
+
+router.delete('/delete-position/:positionId', function(req, res, next){
+    var positionId = req.params.positionId;
+    Position.findByIdAndRemove(positionId, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send('Position Deleted');
         }
     })
 });
