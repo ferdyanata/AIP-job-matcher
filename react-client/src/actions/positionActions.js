@@ -75,7 +75,7 @@ export const employerEditPosition = (position, positionId) => dispatch => {
                     type: EMPLOYER_EDIT_POSITION,
                     payload: position
                 });
-                history.push(`/job-info/${position._id}`);
+                history.goBack();
             },
             error => {
                 console.log(error);
