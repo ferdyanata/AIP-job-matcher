@@ -4,22 +4,19 @@ import { employerEditPosition } from '../../actions/positionActions';
 import { Dropdown } from 'semantic-ui-react';
 import { skills } from '../../data/skills';
 import history from '../../helpers/history';
-import { fetchPosition } from '../../actions/positionActions';
 
 
 class EmployerEditPosition extends React.Component {
-    componentWillMount() {
-        this.props.fetchPosition(this.props.match.params.id);
-    }
 
     constructor(props) {
         super(props);
+        const {position} = props.location.state;
+
         this.state = {
             positionToEdit: {
-                positionName: '',
-                description: '',
-                employerId: localStorage.getItem('user_id'),
-                desiredSkills: []
+                positionName: position.positionName,
+                description: position.description,
+                desiredSkills: position.desiredSkills
             },
         };
         this.handleChange = this.handleChange.bind(this);
@@ -73,31 +70,32 @@ class EmployerEditPosition extends React.Component {
         const { positionToEdit } = this.state;
         const { dispatch } = this.props;
         if (positionToEdit.positionName && positionToEdit.description) {
-            dispatch(employerEditPosition(positionToEdit));
+            dispatch(employerEditPosition(positionToEdit, this.props.match.params.id));
         }
     }
 
     render() {
+        const {position} = this.props.location.state;
         return (
             <div>
                 <form class="ui form" onSubmit={this.handleSubmit}>
-                    <h1>Add Position</h1>
+                    <h1>Edit Position</h1>
                     <div class='field'>
                         <div class='field'>
                             <label for="positionName"><b>Position Title</b></label>
                             <div class='ui input'>
-                                <input type="text" placeholder="Enter position title" name="positionName" required onChange={this.handleChange} value={this.props.position.positionName}/>
+                                <input type="text" placeholder="Enter position title" name="positionName" required onChange={this.handleChange} defaultValue={position.positionName}/>
                             </div>
                         </div>
                         <div class='field'>
                             <label for="description"><b>Description</b></label>
                             <div class='ui input'>
-                                <input type="text" placeholder="Enter position description" name="description" required onChange={this.handleChange} value={this.props.position.description}/>
+                                <input type="text" placeholder="Enter position description" name="description" required onChange={this.handleChange} defaultValue={position.description}/>
                             </div>
                         </div>
                         <div className='field'>
                             <label for="skills">Desired Skills</label>
-                            <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange} value={this.props.position.desiredSkills}/>
+                            <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange} defaultValue={position.desiredSkills}/>
                         </div>  
                         <div class='field'>
                             <button id='form-button-control-public' class='ui button'>
@@ -111,8 +109,5 @@ class EmployerEditPosition extends React.Component {
     }
 
 }
-const mapStateToProps = state => ({
-    position: state.positions.item
-});
 
-export default connect(mapStateToProps, {fetchPosition})(EmployerEditPosition);
+export default connect()(EmployerEditPosition);

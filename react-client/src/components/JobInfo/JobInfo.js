@@ -24,7 +24,7 @@ class JobInfo extends React.Component {
                 {usertype === 'employer' ? 
                     ( 
                     <div>
-                        <EmployerEditPositionButton _id={this.props.position._id}/> 
+                        <EmployerEditPositionButton position={this.props.position}/> 
                         <AppliedMatchedDetails/>
                     </div>
                     ) 
@@ -39,12 +39,12 @@ class JobInfo extends React.Component {
 
 function EmployerEditPositionButton(props) {
     return (
-        <Link to={{pathname: `/edit-position/${props._id}`,}}>
+        <Link to={{ pathname: `/edit-position/${props.position._id}`, state: { position: props.position } }}>
             <button className="ui button">
                 Edit Position
             </button>
         </Link>
-    )
+    );
 }
 
 const mapStateToProps = state => ({
