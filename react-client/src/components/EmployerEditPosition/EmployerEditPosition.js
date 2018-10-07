@@ -10,7 +10,7 @@ class EmployerEditPosition extends React.Component {
 
     constructor(props) {
         super(props);
-        const {position} = props.location.state;
+        const { position } = props.location.state;
 
         this.state = {
             positionToEdit: {
@@ -83,7 +83,7 @@ class EmployerEditPosition extends React.Component {
     }
 
     render() {
-        const {position} = this.props.location.state;
+        const { position } = this.props.location.state;
         return (
             <div>
                 <form class="ui form" onSubmit={this.handleSubmit}>
@@ -92,29 +92,29 @@ class EmployerEditPosition extends React.Component {
                         <div class='field'>
                             <label for="positionName"><b>Position Title</b></label>
                             <div class='ui input'>
-                                <input type="text" placeholder="Enter position title" name="positionName" required onChange={this.handleChange} defaultValue={position.positionName}/>
+                                <input type="text" placeholder="Enter position title" name="positionName" required onChange={this.handleChange} defaultValue={position.positionName} />
                             </div>
                         </div>
                         <div class='field'>
                             <label for="description"><b>Description</b></label>
                             <div class='ui input'>
-                                <input type="text" placeholder="Enter position description" name="description" required onChange={this.handleChange} defaultValue={position.description}/>
+                                <input type="text" placeholder="Enter position description" name="description" required onChange={this.handleChange} defaultValue={position.description} />
                             </div>
                         </div>
                         <div className='field'>
                             <label for="skills">Desired Skills</label>
-                            <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange} defaultValue={position.desiredSkills}/>
-                        </div>  
+                            <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange} defaultValue={position.desiredSkills} />
+                        </div>
                         <div class='field'>
                             <button id='form-button-control-public' class='ui primary button'>
-                                Edit
+                                <i class="pencil icon"></i> <span>Edit</span>
                             </button>
                         </div>
                     </div>
                 </form>
 
                 <button class='ui icon button red' onClick={(e) => { if (window.confirm('Are you sure you wish to delete this position?')) this.handleDelete(e) }}>
-                    <i class="trash icon"></i>
+                    <i class="trash icon"></i> <span>Delete</span>
                 </button>
 
             </div>
