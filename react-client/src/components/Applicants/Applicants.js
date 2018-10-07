@@ -2,10 +2,8 @@ import React from 'react';
 import ApplicantsItem from './ApplicantsItem';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import history from '../../helpers/history';
-import { Link } from 'react-router-dom';
 import { fetchAllApplications } from '../../actions/applicationActions'
-
+import { Header, Image, Table } from 'semantic-ui-react'
 
 class Applicants extends React.Component {
 
@@ -17,24 +15,20 @@ class Applicants extends React.Component {
         const usertype = localStorage.getItem('user_type');
         return (
             <div>
-                <table className="ApplicantionMatched">
-                    <thead>
-                        <tr>
-                            <th>Applicant's Name</th>
-                            <th>Received Message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            {this.props.applications.map(applications =>
-                            <tr>
-                            <td>
-                                        <ApplicantsItem {...applications} usertype={usertype} />
-                                   
-                                </td>
-                            </tr> 
-                            )}
-                    </tbody>
-                </table>
+                <Table basic='very' celled collapsing>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.HeaderCell>Applicant Name</Table.HeaderCell>
+                            <Table.HeaderCell>Received Message</Table.HeaderCell>
+                            <Table.HeaderCell>Skills</Table.HeaderCell>
+                        </Table.Row>
+                    </Table.Header>
+                    <Table.Body>
+                        {this.props.applications.map(applications =>
+                            <ApplicantsItem {...applications} usertype={usertype} />
+                        )}
+                    </Table.Body>
+                </Table>
             </div>
         );
     }
