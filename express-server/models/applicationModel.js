@@ -9,7 +9,7 @@ const applicationSchema = new Schema({
     positionId: String,
     talentName: String,
     messageToEmployer: String,
-    apllicationDate: Date
+    applicationDate: Date
 });
 
 const Application = mongoose.model('application', applicationSchema);
