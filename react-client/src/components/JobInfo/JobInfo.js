@@ -17,6 +17,10 @@ class JobInfo extends React.Component {
             <div class="ui segment">
                 <h3>{this.props.position.positionName}</h3>
                 <p>{this.props.position.description}</p>
+                {/* Show skills here in a list
+                    Loop over the desiredSkills array 
+                    this.props.position.desiredSkills    
+                */}
                 <br/>
                 {usertype === 'employer' ? ( <Applicants />) : <PositionApplication position={this.props.position}/>}
                                      
