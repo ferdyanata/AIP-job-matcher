@@ -25,13 +25,14 @@ class Applicants extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.applications.map(applications =>
+                            {this.props.applications.map(applications =>
+                            <tr>
                             <td>
-                                <div>
-                                    <ApplicantsItem {...applications} usertype={usertype} />
-                                </div>
-                            </td>
-                        )}
+                                        <ApplicantsItem {...applications} usertype={usertype} />
+                                   
+                                </td>
+                            </tr> 
+                            )}
                     </tbody>
                 </table>
             </div>
