@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { applyToPosition } from '../../actions/applicationActions'
+import { TextArea } from 'semantic-ui-react'
 
 class PositionApplication extends React.Component {
 
@@ -48,7 +49,7 @@ class PositionApplication extends React.Component {
                     <div className='field'>
                         <label for="messageToEmployer"><b>Message To Employer</b></label>
                         <div className='ui input'>
-                            <input type="text" placeholder="Write a message to the employer about why you applied" name="messageToEmployer" required onChange={this.handleApplicationChange} />
+                        <TextArea autoHeight placeholder="Write a message to the employer about why you applied" name="messageToEmployer" required onChange={this.handleApplicationChange}/>
                         </div>
                     </div>
                     <div className='field'>
@@ -60,7 +61,7 @@ class PositionApplication extends React.Component {
             </div>
         )
     }
-    
+
 }
 
 const mapStateToProps = state => ({

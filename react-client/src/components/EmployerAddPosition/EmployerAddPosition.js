@@ -4,6 +4,7 @@ import { employerAddPosition } from '../../actions/positionActions';
 import { Dropdown } from 'semantic-ui-react';
 import { skills } from '../../data/skills';
 import history from '../../helpers/history';
+import { TextArea } from 'semantic-ui-react'
 
 class EmployerAddPosition extends React.Component {
 
@@ -72,6 +73,7 @@ class EmployerAddPosition extends React.Component {
         }
     }
 
+
     render() {
         return (
             <div>
@@ -81,19 +83,17 @@ class EmployerAddPosition extends React.Component {
                         <div class='field'>
                             <label for="positionName"><b>Position Title</b></label>
                             <div class='ui input'>
-                                <input type="text" placeholder="Enter position title" name="positionName" required onChange={this.handleChange}/>
+                                <input type="text" placeholder="Enter position title" name="positionName" required onChange={this.handleChange} />
                             </div>
                         </div>
                         <div class='field'>
                             <label for="description"><b>Description</b></label>
-                            <div class='ui input'>
-                                <input type="text" placeholder="Enter position description" name="description" required onChange={this.handleChange}/>
-                            </div>
+                            <TextArea autoHeight placeholder='Enter position description' name="description" required onChange={this.handleChange} />
                         </div>
                         <div className='field'>
                             <label for="skills">Desired Skills</label>
-                            <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange}/>
-                        </div>  
+                            <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange} />
+                        </div>
                         <div class='field'>
                             <button id='form-button-control-public' class='ui button'>
                                 Add
