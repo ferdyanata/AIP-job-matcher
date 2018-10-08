@@ -24,8 +24,8 @@ class Applicants extends React.Component {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {this.props.applications.map(applications =>
-                            <ApplicantsItem {...applications} usertype={usertype} />
+                        {this.props.applications.map(application =>
+                            <ApplicantsItem {...application} usertype={usertype} />
                         )}
                     </Table.Body>
                 </Table>

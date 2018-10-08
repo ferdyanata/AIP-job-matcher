@@ -7,7 +7,6 @@ const Schema = mongoose.Schema;
 const applicationSchema = new Schema({
     talentId: String,
     positionId: String,
-    talentName: String,
     messageToEmployer: String,
     applicationDate: Date
 });
