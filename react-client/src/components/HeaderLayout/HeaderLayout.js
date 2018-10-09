@@ -15,7 +15,7 @@ class HeaderLayout extends React.Component {
               {/* <Image size='mini' src='../../../public/images/JobMatcherLogo.png' style={{ marginRight: '1.5em' }} /> */}
               Job Matcher
             </Menu.Item>
-            <Link to='/'><Menu.Item as='a'>Home</Menu.Item></Link>
+            <Link to={getHomeLink()}><Menu.Item as='a'>Home</Menu.Item></Link>
             <Link to='/login'><Menu.Item as='a'>Login</Menu.Item></Link>
             <Link to='/register/talent-register'><Menu.Item as='a'>Sign Up</Menu.Item></Link>
           </Container>
@@ -23,6 +23,14 @@ class HeaderLayout extends React.Component {
       </div >
     )
   }
+}
+
+function getHomeLink() {
+  if (!localStorage.getItem('user_id') || !localStorage.getItem('user_type')) {
+            return '/';
+        } else {
+            return '/positions';
+        }
 }
 
 export default HeaderLayout

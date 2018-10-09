@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { applyToPosition } from '../../actions/applicationActions'
+import { alertActions } from '../../actions/alertActions';
 
 class PositionApplication extends React.Component {
 
@@ -9,13 +10,13 @@ class PositionApplication extends React.Component {
         this.state = {
             application: {
                 messageToEmployer: '',
-                positionId: props.position._id,
+                positionId: ''
             }
         };
         this.handleApplicationChange = this.handleApplicationChange.bind(this);
         this.handleApplicationSubmit = this.handleApplicationSubmit.bind(this);
+        
     }
-
 
     handleApplicationChange(event) {
         const { name, value } = event.target;
@@ -28,6 +29,7 @@ class PositionApplication extends React.Component {
                 [name]: value
             }
         });
+        
     }
 
     handleApplicationSubmit(event) {
@@ -35,12 +37,14 @@ class PositionApplication extends React.Component {
         const { application } = this.state;
         const { dispatch } = this.props;
         if (application.messageToEmployer) {
-            console.log('Apply submit');
             dispatch(applyToPosition(application));
+        } else {
+            dispatch(alertActions.error('Please write a message for the employer.'));
         }
     }
 
     render() {
+        
         return (
             <div>
                 <form className="ui form" onSubmit={this.handleApplicationSubmit}>
@@ -62,8 +66,4 @@ class PositionApplication extends React.Component {
     }
     
 }
-
-const mapStateToProps = state => ({
-});
-
-export default connect(mapStateToProps)(PositionApplication);
+export default connect()(PositionApplication);
