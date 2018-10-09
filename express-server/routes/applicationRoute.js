@@ -30,15 +30,42 @@ router.post('/application', function (req, res, next) {
     });
 });
 
-router.post('/application/:talentId/:positionId', function (req, res, next) {
-    Application.findOne({ talentId: talentId, positionId: positionId }, function (err, application) {
+router.get('/application/:talentId/:positionId', function (req, res, next) {
+
+    var talentId = req.params.talentId;
+    var positionId = req.params.positionId;
+    
+
+    Application.findOne({ talentId: talentId, positionId: positionId}, function (err, application) {
         if (err) {
             console.log(err);
         } else {
             res.json(application);
         }
-    })
-})
+    });
+});
+
+
+// //Ignore all this stuff
+// router.get('/applicants-info/:applicationId', function (req, res, next) {
+//     var applicationId = req.params.applicationId;
+
+//     Application.aggregate([
+//        {
+//            $lookup: {
+//                from: "talents",
+//                localField: "talentId",
+//                foreignField: "_id",
+//                as: "applicantsInfo"
+//            }
+//        } 
+//     ]).exec(function(err, results) {
+//         res.send(results)
+//         console.log(results);
+//     });
+
+
+// });
 
 
 module.exports = router;

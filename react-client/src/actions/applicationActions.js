@@ -1,5 +1,6 @@
-import { APPLY_TO_POSITION, FETCH_ALL_APPLICATIONS } from './types';
+import { APPLIED_TO_POSITION, APPLY_TO_POSITION, FETCH_ALL_APPLICATIONS } from './types';
 import history from '../helpers/history';
+import { alertActions } from './alertActions';
 
 // Retrieve all applicants who have applied to the job post
 export const fetchAllApplications = () => dispatch => {
@@ -29,13 +30,17 @@ export const applyToPosition = (application) => dispatch => {
                     type: APPLY_TO_POSITION,
                     payload: application
                 });
+                //Refresh the view so that the user doesn't apply again
+                window.location.reload();
             },
             error => {
-                //Send error alert
+                console.log(error);
             }
         );
 };
 
+
+//Currently not being used
 export const checkIfTalentApplied = (talentId, positionId) => dispatch => {
     console.log(talentId);
     console.log(positionId);
@@ -43,7 +48,16 @@ export const checkIfTalentApplied = (talentId, positionId) => dispatch => {
         .then(res => res.json())
         .then(
             application => {
+                var payload = false;
+                if (application){
+                    payload = true;
+                }
+                // dispatch({
+                //     type: APPLIED_TO_POSITION,
+                //     payload: payload
+                // });
+                dispatch(alertActions.success('You have applied to this position.'))
                 console.log(application);
             }
-        )
+        );
 }

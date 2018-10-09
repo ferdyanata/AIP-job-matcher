@@ -11,6 +11,7 @@ import Login from '../Login/Login'
 import AdvertisedPositions from '../AdvertisedPositions/AdvertisedPositions'
 import JobInfo from '../JobInfo/JobInfo';
 import EmployerAddPosition from '../EmployerAddPosition/EmployerAddPosition';
+import EmployerEditPosition from '../EmployerEditPosition/EmployerEditPosition';
 
 const Main = () => (
   <main>
@@ -21,6 +22,7 @@ const Main = () => (
           <Route path='/register' component={Register} />
           <Route path='/positions' component={AdvertisedPositions} />
           <Route path='/job-info/:id' component={JobInfo} />
+          <Route path='/edit-position/:id' component={EmployerEditPosition} />
           <Route path='/employer/add-position' component={EmployerAddPosition} />
         </Container>
       </Switch>
