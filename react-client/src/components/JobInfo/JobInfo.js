@@ -1,13 +1,12 @@
 import React from 'react';
-import AppliedMatchedDetails from "../AppliedMatchedDetails/AppliedMatchedDetails";
+import Applicants from "../Applicants/Applicants";
 import PositionApplication from "../PositionApplication/PositionApplication";
 import { connect } from 'react-redux';
 import { fetchPosition } from '../../actions/positionActions';
+import { Header, Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class JobInfo extends React.Component {
-
-
     constructor(props) {
         super(props);
         this.state ={
@@ -15,7 +14,7 @@ class JobInfo extends React.Component {
         };
     }
 
-    componentWillMount() {
+  componentWillMount() {
         this.props.fetchPosition(this.props.match.params.id);
 
         if (localStorage.getItem('user_type') === 'talent') {
@@ -34,6 +33,21 @@ class JobInfo extends React.Component {
             );
         }   
     }
+
+    desiredSkillsList = () => {
+        var {desiredSkills} = this.props.position
+        let listArray = [desiredSkills]
+
+        for(let i = 0; i < 100; i++){
+            let children = []
+            for (let j = 0; j < listArray.length[i]; j++){
+                children.push(<Table.Cell>{desiredSkills}</Table.Cell>)
+            }
+            listArray.push(<Table.Row>{children}</Table.Row>)
+        }
+        return listArray
+    }
+
 
     render() {
         const usertype = localStorage.getItem('user_type');
@@ -87,4 +101,4 @@ const mapStateToProps = state => ({
     position: state.positions.item
 });
 
-export default connect(mapStateToProps, {fetchPosition})(JobInfo);
+export default connect(mapStateToProps, { fetchPosition })(JobInfo);

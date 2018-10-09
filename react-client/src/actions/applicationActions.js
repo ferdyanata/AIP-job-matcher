@@ -3,14 +3,8 @@ import history from '../helpers/history';
 import { alertActions } from './alertActions';
 
 // Retrieve all applicants who have applied to the job post
-export const fetchAllApplications = (application) => dispatch => {
-    const requestOptions = {
-        method: 'GET',
-        headers: { 'Content-Type': 'applicantion/json' },
-        body: JSON.stringify(application)
-    };
-
-    fetch('/api/applications', requestOptions)
+export const fetchAllApplications = () => dispatch => {
+    fetch('/api/applications')
         .then(res => res.json())
         .then(applications => {
             localStorage.setItem('jwtToken', applications)

@@ -7,9 +7,8 @@ const Schema = mongoose.Schema;
 const applicationSchema = new Schema({
     talentId: String,
     positionId: String,
-    talentName: String,
     messageToEmployer: String,
-    apllicationDate: Date
+    applicationDate: Date
 });
 
 const Application = mongoose.model('application', applicationSchema);
