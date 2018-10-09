@@ -56,13 +56,13 @@ class JobInfo extends React.Component {
                 <div class="ui segment">
                     <h3>{this.props.position.positionName}</h3>
                     <p>{this.props.position.description}</p>
-                    <p>{this.props.position.desiredSkills}</p>
+                    <p>{this.desiredSkillsList()}</p>
                     <br/>
                     {usertype === 'employer' ? 
                     ( 
                         <div>
                             <EmployerEditPositionButton position={this.props.position}/> 
-                            <AppliedMatchedDetails/>
+                            <Applicants/>
                         </div>
                     ) 
                     :
