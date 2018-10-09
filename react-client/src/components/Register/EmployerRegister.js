@@ -1,6 +1,7 @@
 import React from 'react';
 import { employerRegister } from '../../actions/registerActions';
 import { connect } from 'react-redux';
+import { alertActions } from '../../actions/alertActions';
 
 class EmployerRegister extends React.Component {
 
@@ -38,11 +39,21 @@ class EmployerRegister extends React.Component {
         event.preventDefault();
         const { employerToRegister } = this.state;
         const { dispatch } = this.props;
-        if (employerToRegister.companyName && employerToRegister.email && employerToRegister.password) {
-            dispatch(employerRegister(employerToRegister));
-            this.setState({ submitted: true });
-
+        if (employerToRegister.companyName.length > 0) {
+            if (employerToRegister.password.length > 6) {
+                if (employerToRegister.email.length > 6 && employerToRegister.email.includes("@")){
+                    dispatch(employerRegister(employerToRegister));
+                    this.setState({ submitted: true });
+                } else {
+                    dispatch(alertActions.error("Invalid email entered"));
+                }
+            } else {
+                dispatch(alertActions.error("Password must be 6 characters long"));
+            }
+        } else {
+            dispatch(alertActions.error("Please enter a company name"));
         }
+
     }
 
     render() {

@@ -3,6 +3,7 @@ import { talentRegister } from '../../actions/registerActions';
 import { connect } from 'react-redux';
 import { Dropdown } from 'semantic-ui-react';
 import { skills } from '../../data/skills';
+import { alertActions } from '../../actions/alertActions';
 
 class TalentRegister extends React.Component {
     constructor() {
@@ -63,9 +64,21 @@ class TalentRegister extends React.Component {
         event.preventDefault();
         const { talentToRegister } = this.state;
         const { dispatch } = this.props;
-        if (talentToRegister.firstName && talentToRegister.lastName && talentToRegister.password && talentToRegister.email) {
-            dispatch(talentRegister(talentToRegister));
-            this.setState({ submitted: true });
+    
+
+        if (talentToRegister.firstName.length > 0 && talentToRegister.lastName.length > 0) {
+            if (talentToRegister.password.length > 6) {
+                if (talentToRegister.email.length > 6 && talentToRegister.email.includes("@")){
+                    dispatch(talentRegister(talentToRegister));
+                    this.setState({ submitted: true });
+                } else {
+                    dispatch(alertActions.error("Invalid email entered"));
+                }
+            } else {
+                dispatch(alertActions.error("Password must be 6 characters long"));
+            }
+        } else {
+            dispatch(alertActions.error("Please enter your full name"));
         }
     }
 
