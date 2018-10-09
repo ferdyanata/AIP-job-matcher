@@ -6,6 +6,31 @@ import ReactTextCollapse from 'react-text-collapse';
 
 
 export default class AppliedMatchedDetailsItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state ={
+            talent: null
+        };
+    }
+
+    componentWillMount() {
+        console.log(this.props.talentId);
+    
+            fetch(`/api/talent/${this.props.talentId}`)
+            .then(res => res.json())
+            .then(
+                talent => {
+                    console.log(talent);
+                    this.setState({
+                        talent: talent
+                    });
+                }
+            );
+        
+    }
+
+    
+
     render() {
         var { positionId, messageToEmployer } = this.props;
         const TEXT_COLLAPSE_OPTIONS = {
@@ -16,12 +41,13 @@ export default class AppliedMatchedDetailsItem extends React.Component {
             maxHeight: 250 // expanded to
         }
 
+        if (this.state.talent) {
         return (
             <Table.Row>
                 <Table.Cell>
                     <Header as='h4'>
                         <Header.Content>
-                            {positionId}
+                            {this.state.talent.fullName}
                         </Header.Content>
                     </Header>
                 </Table.Cell>
@@ -35,8 +61,38 @@ export default class AppliedMatchedDetailsItem extends React.Component {
                         </Header.Content>
                     </Header>
                 </Table.Cell>
+                <Table.Cell>
+                    <Header as='h4'>
+                        <Header.Content>
+                            {this.skillsList()}
+                        </Header.Content>
+                    </Header>
+                </Table.Cell>
             </Table.Row>
         );
+        }
+        else {
+            return (<p> Loading Talent Info</p>);
+        }
 
+    }
+
+    skillsList = () => {
+        //Temp solution
+        var list = "";
+        var {skills} = this.state.talent;
+
+        console.log(this.state);
+
+        if (skills) {
+            for(var i = 0; i < skills.length; i++) {
+                list += (skills[i]);
+                //If final element dont add comma
+                if (i+1 != skills.length) {
+                    list += ", ";
+                }
+            }
+        }
+        return list;
     }
 }

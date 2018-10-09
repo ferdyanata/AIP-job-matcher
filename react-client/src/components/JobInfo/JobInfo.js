@@ -75,12 +75,13 @@ class JobInfo extends React.Component {
                     ( 
                         <div>
                             <EmployerEditPositionButton position={this.props.position}/> 
-                            <Applicants/>
+                            <Applicants positionId ={this.props.match.params.id}/>
                         </div>
                     ) 
                     :
-                     <Application position = {this.props.position} applied = {this.state.applied}/>
+                     <Application position = {this.props.position} applied = {this.state.applied}/> 
                     }
+                    
                 </div>
             );
         }
