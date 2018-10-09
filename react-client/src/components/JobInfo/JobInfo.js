@@ -35,17 +35,30 @@ class JobInfo extends React.Component {
     }
 
     desiredSkillsList = () => {
+        //Temp solution
+        var list = "Desired skills: ";
         var {desiredSkills} = this.props.position
-        let listArray = [desiredSkills]
+        let listArray = [desiredSkills];
 
-        for(let i = 0; i < 100; i++){
-            let children = []
-            for (let j = 0; j < listArray.length[i]; j++){
-                children.push(<Table.Cell>{desiredSkills}</Table.Cell>)
+        if (desiredSkills) {
+            for(var i = 0; i < desiredSkills.length; i++) {
+                list += (desiredSkills[i]);
+                //If final element dont add comma
+                if (i+1 != desiredSkills.length) {
+                    list += ", ";
+                }
             }
-            listArray.push(<Table.Row>{children}</Table.Row>)
         }
-        return listArray
+
+        // for(let i = 0; i < 100; i++){
+        //     let children = []
+        //     for (let j = 0; j < listArray.length[i]; j++){
+        //         children.push(<Table.Cell>{desiredSkills}</Table.Cell>)
+        //     }
+        //     listArray.push(<Table.Row>{children}</Table.Row>)
+        // }
+        //temp
+        return list;
     }
 
 
