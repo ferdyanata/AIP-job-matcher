@@ -38,7 +38,7 @@ export function talentLogin(data){
            //George's temp fix
            localStorage.setItem('user_id', res.data.talent._id);
            localStorage.setItem('user_type', 'talent');
-
+           history.push('/positions');
            dispatch({  
                 type: TALENT_LOGIN,
                 payload: res.data.talent
