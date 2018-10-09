@@ -12,7 +12,7 @@ class AdvertisedPositions extends React.Component {
     componentWillMount() {
         if (!localStorage.getItem('user_id') || !localStorage.getItem('user_type')) {
             history.push('/');
-            console.log('invalid session');
+            console.log('Invalid session');
         } else {
             if (localStorage.getItem('user_type') === 'employer') {
                 this.props.fetchEmployersPositions(localStorage.getItem('user_id'));

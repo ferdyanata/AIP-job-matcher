@@ -43,19 +43,30 @@ router.post('/employer-register', function (req, res, next) {
             email: email,
             password: password
         });
-        // save the user onto database
-        newUser.save(function (err) {
-            if (err) {
-                // if err, display Email already exists in the database
-                return res.json({ success: false, msg: 'Email already exists.' });
-            } else {
-                // this will sign the information publicly 
-                const token = jwt.sign({ companyName: companyName, email: email }, settings.secret);
-                // return the information including token 
-                res.json({ newUser, success: true, msg: 'Successful created new user.', token: token });
-            }
 
-        });
+        Employer.find({email: email}, function (err, employers) {
+            if (err) {
+                console.log(err);
+            } else {
+                if (!employers.length) {
+                    // save the user onto database
+                    newUser.save(function (err) {
+                        if (err) {
+                            // if err, display Email already exists in the database
+                            return res.json({ success: false, msg: 'Email already exists.' });
+                        } else {
+                            // this will sign the information publicly 
+                            const token = jwt.sign({ companyName: companyName, email: email }, settings.secret);
+                            // return the information including token 
+                            res.json({ newUser, success: true, msg: 'Successful created new user.', token: token });
+                        }
+                    });
+                } else {
+                    res.status(401).send({ success: false, msg: 'Email is already associated with an existing account' });
+                }
+            }
+        })
+        
     }
 });
 

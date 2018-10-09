@@ -46,17 +46,31 @@ router.post('/talent-register', function (req, res) {
             password: password,
             skills: skills
         });
-        // save the user onto the database
-        newUser.save(function (err) {
-            if (err) {
-                return res.json({ success: false, msg: 'Username already exists.' });
-            } else {
-                const token = jwt.sign({fullName: fullName, email: email}, settings.secret);
-                // return the information including token
-                res.json({ newUser, success: true, msg: 'Successful created new user.', token: token });
-            }
 
-        });
+        Talent.find({email: email}, function (err, talents) {
+            if (err) {
+                console.log(err);
+            } else {
+                if (!talents.length) {
+                    //register them
+                    // save the user onto the database
+                    newUser.save(function (err) {
+                        if (err) {
+                            return res.json({ success: false, msg: 'Username already exists.' });
+                        } else {
+                            const token = jwt.sign({fullName: fullName, email: email}, settings.secret);
+                            // return the information including token
+                            res.json({ newUser, success: true, msg: 'Successful created new user.', token: token });
+                        }
+
+                    });
+                } else {
+                    res.status(401).send({ success: false, msg: 'Email is already associated with an existing account' });
+                }
+            }
+        })
+
+        
     }
 });
 

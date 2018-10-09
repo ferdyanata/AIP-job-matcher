@@ -20,7 +20,8 @@ export function talentRegister(data) {
             history.push('/positions');
         },
         error => {
-                dispatch(alertActions.error(error));
+                console.log(error.response.data.msg);
+                dispatch(alertActions.error(error.response.data.msg));
             }
         );
     }
@@ -43,7 +44,8 @@ export function employerRegister(data) {
             history.push('/positions');
         },
         error => {
-                dispatch(alertActions.error(error));
+                console.log(error.response.data.msg);
+                dispatch(alertActions.error(error.response.data.msg));
             }
         );
     }

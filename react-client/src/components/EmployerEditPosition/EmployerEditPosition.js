@@ -1,26 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { employerAddPosition } from '../../actions/positionActions';
+import { employerEditPosition, employerDeletePosition } from '../../actions/positionActions';
 import { Dropdown } from 'semantic-ui-react';
 import { skills } from '../../data/skills';
 import history from '../../helpers/history';
-import { TextArea } from 'semantic-ui-react'
 
-class EmployerAddPosition extends React.Component {
+
+class EmployerEditPosition extends React.Component {
 
     constructor(props) {
         super(props);
+        const { position } = props.location.state;
+
         this.state = {
-            positionToAdd: {
-                positionName: '',
-                description: '',
-                employerId: localStorage.getItem('user_id'),
-                desiredSkills: []
+            positionToEdit: {
+                positionName: position.positionName,
+                description: position.description,
+                desiredSkills: position.desiredSkills
             },
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSkillsChange = this.handleSkillsChange.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     //Check if users session is valid
@@ -32,12 +34,13 @@ class EmployerAddPosition extends React.Component {
 
     }
 
+
     handleChange(event) {
         const { name, value } = event.target;
-        const { positionToAdd } = this.state;
+        const { positionToEdit } = this.state;
         this.setState({
-            positionToAdd: {
-                ...positionToAdd,
+            positionToEdit: {
+                ...positionToEdit,
                 [name]: value
             }
         });
@@ -55,10 +58,10 @@ class EmployerAddPosition extends React.Component {
             skills[i] = valuesFromDropdown[i];
         }
 
-        const { positionToAdd } = this.state;
+        const { positionToEdit } = this.state;
         this.setState({
-            positionToAdd: {
-                ...positionToAdd,
+            positionToEdit: {
+                ...positionToEdit,
                 desiredSkills: skills
             }
         });
@@ -66,46 +69,58 @@ class EmployerAddPosition extends React.Component {
     //When the user clicks the register button this is called, which dispatches an action
     handleSubmit(event) {
         event.preventDefault();
-        const { positionToAdd } = this.state;
+        const { positionToEdit } = this.state;
         const { dispatch } = this.props;
-        if (positionToAdd.positionName && positionToAdd.description) {
-            dispatch(employerAddPosition(positionToAdd));
+        if (positionToEdit.positionName && positionToEdit.description) {
+            dispatch(employerEditPosition(positionToEdit, this.props.match.params.id));
         }
     }
 
+    handleDelete(event) {
+        console.log('delete');
+        const { dispatch } = this.props;
+        dispatch(employerDeletePosition(this.props.match.params.id));
+    }
 
     render() {
+        const { position } = this.props.location.state;
         return (
             <div>
                 <form class="ui form" onSubmit={this.handleSubmit}>
-                    <h1>Add Position</h1>
+                    <h1>Edit Position</h1>
                     <div class='field'>
                         <div class='field'>
                             <label for="positionName"><b>Position Title</b></label>
                             <div class='ui input'>
-                                <input type="text" placeholder="Enter position title" name="positionName" required onChange={this.handleChange} />
+                                <input type="text" placeholder="Enter position title" name="positionName" required onChange={this.handleChange} defaultValue={position.positionName} />
                             </div>
                         </div>
                         <div class='field'>
                             <label for="description"><b>Description</b></label>
-                            <TextArea autoHeight placeholder='Enter position description' name="description" required onChange={this.handleChange} />
+                            <div class='ui input'>
+                                <input type="text" placeholder="Enter position description" name="description" required onChange={this.handleChange} defaultValue={position.description} />
+                            </div>
                         </div>
                         <div className='field'>
                             <label for="skills">Desired Skills</label>
-                            <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange} />
+                            <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange} defaultValue={position.desiredSkills} />
                         </div>
                         <div class='field'>
-                            <button id='form-button-control-public' class='ui button'>
-                                Add
+                            <button id='form-button-control-public' class='ui primary button'>
+                                <i class="pencil icon"></i> <span>Edit</span>
                             </button>
                         </div>
                     </div>
                 </form>
+
+                <button class='ui icon button red' onClick={(e) => { if (window.confirm('Are you sure you wish to delete this position?')) this.handleDelete(e) }}>
+                    <i class="trash icon"></i> <span>Delete</span>
+                </button>
+
             </div>
         );
     }
 
 }
 
-
-export default connect(null)(EmployerAddPosition);
+export default connect()(EmployerEditPosition);
