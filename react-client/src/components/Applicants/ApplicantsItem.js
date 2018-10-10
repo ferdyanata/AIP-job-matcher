@@ -24,6 +24,9 @@ export default class AppliedMatchedDetailsItem extends React.Component {
                     this.setState({
                         talent: talent
                     });
+                }, 
+                error => {
+                    console.log(error);
                 }
             );
         

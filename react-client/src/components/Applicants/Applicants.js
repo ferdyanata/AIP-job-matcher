@@ -22,6 +22,9 @@ export default class Applicants extends React.Component {
                         applications: applications
                     });
                     this.forceUpdate();
+                }, 
+                error => {
+                    console.log(error);
                 }
             );
     }
