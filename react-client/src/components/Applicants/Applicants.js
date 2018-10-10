@@ -7,7 +7,7 @@ import { Header, Image, Table } from 'semantic-ui-react'
 export default class Applicants extends React.Component {
     constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             applications: null
         };
     }
@@ -26,8 +26,10 @@ export default class Applicants extends React.Component {
             );
     }
 
-   
+
     render() {
+        const usertype = localStorage.getItem('user_type');
+
         return (
             <div>
                 <Table basic='very' celled collapsing>
@@ -39,25 +41,31 @@ export default class Applicants extends React.Component {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        <Applications applications = {this.state.applications}/>
+                        {this.state.applications ? (
+
+                            this.state.applications.map(application =>
+                                <ApplicantsItem {...application} usertype={usertype} />
+                            )
+
+                        ) :
+                            <p></p>
+                        }
                     </Table.Body>
                 </Table>
             </div>
         );
     }
 
-    
+
 }
 
 function Applications(props) {
     const applications = props.applications;
     const usertype = localStorage.getItem('user_type');
     if (applications) {
-        return( 
+        return (
             <div>
-                {applications.map(application =>
-                    <ApplicantsItem {...application} usertype={usertype} />
-                )}
+
             </div>
         );
     } else {
