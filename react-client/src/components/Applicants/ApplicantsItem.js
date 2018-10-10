@@ -37,8 +37,8 @@ export default class AppliedMatchedDetailsItem extends React.Component {
             collapse: false, // default state when component rendered
             collapseText: '... show more', // text to show when collapsed
             expandText: 'show less', // text to show when expanded
-            minHeight: 100, // component height when closed
-            maxHeight: 250 // expanded to
+            minHeight: 50, // component height when closed
+            maxHeight: 150 // expanded to
         }
 
         if (this.state.talent) {

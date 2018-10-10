@@ -32,6 +32,7 @@ export const applyToPosition = (application) => dispatch => {
                 });
                 //Refresh the view so that the user doesn't apply again
                 window.location.reload();
+                dispatch(alertActions.success('You have applied!'));
             },
             error => {
                 console.log(error);

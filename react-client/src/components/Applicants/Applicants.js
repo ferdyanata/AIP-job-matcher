@@ -2,7 +2,6 @@ import React from 'react';
 import ApplicantsItem from './ApplicantsItem';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchApplications } from '../../actions/applicationActions'
 import { Header, Image, Table } from 'semantic-ui-react'
 
 export default class Applicants extends React.Component {
