@@ -13,6 +13,7 @@ export function employerLogin(data){
            localStorage.setItem('user_id', res.data.employer._id);
            localStorage.setItem('user_type', 'employer');
            history.push('/positions');
+           window.location.reload();           
            dispatch({  
                 type: EMPLOYER_LOGIN,
                 payload: res.data.employer
@@ -39,6 +40,7 @@ export function talentLogin(data){
            localStorage.setItem('user_id', res.data.talent._id);
            localStorage.setItem('user_type', 'talent');
            history.push('/positions');
+           window.location.reload();           
            dispatch({  
                 type: TALENT_LOGIN,
                 payload: res.data.talent

@@ -29,6 +29,9 @@ class JobInfo extends React.Component {
                     this.setState({
                         applied: payload
                     });
+                }, 
+                error => {
+                    console.log(error);
                 }
             );
         }   

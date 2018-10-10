@@ -14,16 +14,17 @@ export default class AppliedMatchedDetailsItem extends React.Component {
     }
 
     componentWillMount() {
-        console.log(this.props.talentId);
     
             fetch(`/api/talent/${this.props.talentId}`)
             .then(res => res.json())
             .then(
                 talent => {
-                    console.log(talent);
                     this.setState({
                         talent: talent
                     });
+                }, 
+                error => {
+                    console.log(error);
                 }
             );
         
@@ -81,8 +82,6 @@ export default class AppliedMatchedDetailsItem extends React.Component {
         //Temp solution
         var list = "";
         var {skills} = this.state.talent;
-
-        console.log(this.state);
 
         if (skills) {
             for(var i = 0; i < skills.length; i++) {

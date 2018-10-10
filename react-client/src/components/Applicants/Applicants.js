@@ -12,16 +12,17 @@ export default class Applicants extends React.Component {
         };
     }
     componentWillMount() {
-        console.log(this.props.positionId);
         fetch(`/api/applications/${this.props.positionId}`)
             .then(res => res.json())
             .then(
                 applications => {
-                    console.log(applications);
                     this.setState({
                         applications: applications
                     });
                     this.forceUpdate();
+                }, 
+                error => {
+                    console.log(error);
                 }
             );
     }
