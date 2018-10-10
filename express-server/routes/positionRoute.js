@@ -7,6 +7,7 @@ const express = require('express');
 
 const router = express.Router();
 const Position = require('../models/positionModel.js');
+const Employer = require('../models/employerModel.js');
 
 /**
  * get all positions from the database
@@ -48,6 +49,17 @@ router.get('/employer_positions/:employerId', function (req, res, next) {
             console.log(err);
         } else {
             res.json(positions);
+        }
+    });
+});
+
+router.get('/employer/:employerId', function (req, res, next) {
+    var employerId = req.params.employerId;
+    Employer.findOne({_id: employerId}, function(err, employer) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(employer);
         }
     });
 });

@@ -2,17 +2,35 @@ import React from 'react';
 import ApplicantsItem from './ApplicantsItem';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAllApplications } from '../../actions/applicationActions'
 import { Header, Image, Table } from 'semantic-ui-react'
 
-class Applicants extends React.Component {
-
-    componentWillMount() {
-        this.props.fetchAllApplications();
+export default class Applicants extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            applications: null
+        };
     }
+    componentWillMount() {
+        fetch(`/api/applications/${this.props.positionId}`)
+            .then(res => res.json())
+            .then(
+                applications => {
+                    this.setState({
+                        applications: applications
+                    });
+                    this.forceUpdate();
+                }, 
+                error => {
+                    console.log(error);
+                }
+            );
+    }
+
 
     render() {
         const usertype = localStorage.getItem('user_type');
+
         return (
             <div>
                 <Table basic='very' celled collapsing>
@@ -24,24 +42,37 @@ class Applicants extends React.Component {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
-                        {this.props.applications.map(application =>
-                            <ApplicantsItem {...application} usertype={usertype} />
-                        )}
+                        {this.state.applications ? (
+
+                            this.state.applications.map(application =>
+                                <ApplicantsItem {...application} usertype={usertype} />
+                            )
+
+                        ) :
+                            <p></p>
+                        }
                     </Table.Body>
                 </Table>
             </div>
         );
     }
+
+
 }
 
-Applicants.propTypes = {
-    fetchAllApplications: PropTypes.func.isRequired,
-    applications: PropTypes.array.isRequired
-};
+function Applications(props) {
+    const applications = props.applications;
+    const usertype = localStorage.getItem('user_type');
+    if (applications) {
+        return (
+            <div>
 
-const mapStateToProps = state => ({
-    applications: state.applications.items
-});
+            </div>
+        );
+    } else {
+        return <p></p>;
+    }
+}
 
 
-export default connect(mapStateToProps, { fetchAllApplications })(Applicants)
+

@@ -18,6 +18,7 @@ export function talentRegister(data) {
                 payload: talent
             });
             history.push('/positions');
+            window.location.reload();            
         },
         error => {
                 console.log(error.response.data.msg);
@@ -42,6 +43,7 @@ export function employerRegister(data) {
             });
             //Take the employer to the homepage
             history.push('/positions');
+            window.location.reload();            
         },
         error => {
                 console.log(error.response.data.msg);

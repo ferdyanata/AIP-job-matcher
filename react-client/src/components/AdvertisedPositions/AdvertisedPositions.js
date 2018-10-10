@@ -29,7 +29,8 @@ class AdvertisedPositions extends React.Component {
         const usertype = localStorage.getItem('user_type');
         return (
             <div class="ui segment">
-                <h2> Advertised Positions </h2>
+                <h2> Positions </h2>
+                <hr/>
                 {this.props.positions.map( position => 
                 <div>
                     <AdvertisedPosition {...position} usertype={usertype} /> 

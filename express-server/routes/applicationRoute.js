@@ -14,6 +14,18 @@ router.get('/applications', function (req, res, next) {
     });
 });
 
+router.get('/applications/:positionId', function (req, res, next) {
+    var positionId = req.params.positionId;
+
+    Application.find({positionId: positionId}, function (err, applications) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(applications);
+        }
+    });
+});
+
 router.post('/application', function (req, res, next) {
     var applicationToSubmit = new Application({
         talentName: req.body.fullName,
@@ -45,6 +57,18 @@ router.get('/application/:talentId/:positionId', function (req, res, next) {
     });
 });
 
+
+router.get('/talent/:talentId', function (req, res, next) {
+    var talentId = req.params.talentId;
+
+    Talent.findOne({_id: talentId}, function(err, talent) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(talent);
+        }
+    });
+})
 
 // //Ignore all this stuff
 // router.get('/applicants-info/:applicationId', function (req, res, next) {
