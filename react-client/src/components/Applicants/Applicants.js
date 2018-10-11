@@ -1,8 +1,6 @@
 import React from 'react';
 import ApplicantsItem from './ApplicantsItem';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Header, Image, Table } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 
 export default class Applicants extends React.Component {
     constructor(props) {
@@ -56,23 +54,6 @@ export default class Applicants extends React.Component {
             </div>
         );
     }
-
-
 }
-
-function Applications(props) {
-    const applications = props.applications;
-    const usertype = localStorage.getItem('user_type');
-    if (applications) {
-        return (
-            <div>
-
-            </div>
-        );
-    } else {
-        return <p></p>;
-    }
-}
-
 
 

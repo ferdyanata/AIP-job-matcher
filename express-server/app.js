@@ -30,20 +30,11 @@ app.get('/', function (req, res) {
 /**
  * connect to mongodb MLab
  */
-//const db = require('./config/database').mongoURI;
 mongoose.Promise = require('bluebird'); // A Promise library 
 mongoose
-    //.connect(db, { useNewUrlParser: true })
     .connect('mongodb://localhost/job_seeker', { useNewUrlParser: true })
     .then(function () { console.log('MongoDB Connected...') })
     .catch(function (err) { console.log(err) });
-
-// catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//     var err = new Error('Not Found');
-//     err.status = 404;
-//     next(err);
-// });
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -55,12 +46,6 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
-/**
- * serves as a middleware that provides static pages/information such as jpeg
- * as a result, it doesn't need to run the api functions
- */
-//app.use(express.static('public'));
 
 /**
  * Helps handle HTTP POST request to complement Express.js (V4 and above)

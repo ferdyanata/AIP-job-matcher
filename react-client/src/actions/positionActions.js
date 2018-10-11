@@ -1,7 +1,5 @@
 import { FETCH_ALL_POSITIONS,FETCH_EMPLOYERS_POSITIONS, FETCH_POSITION, EMPLOYER_ADD_POSITION, EMPLOYER_EDIT_POSITION } from './types';
 import history from '../helpers/history';
-import axios from 'axios';
-
 
 export const fetchAllPositions = () => dispatch => {
     fetch('/api/positions')
@@ -27,7 +25,7 @@ export const fetchEmployersPositions = (employerId) => dispatch => {
 };
 
 export const fetchPosition = (positionId) => dispatch => {
-    var token = localStorage.getItem('jwtToken');
+    // var token = localStorage.getItem('jwtToken');
     fetch(`/api/positions/${positionId}`)
         .then(res => res.json())
         .then(position =>
@@ -54,9 +52,6 @@ export const employerAddPosition = (position) => dispatch => {
                     payload: position
                 });
                 history.push('/positions');
-            },
-            error => {
-
             }
         );
 };

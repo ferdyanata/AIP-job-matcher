@@ -3,7 +3,6 @@ import Applicants from "../Applicants/Applicants";
 import PositionApplication from "../PositionApplication/PositionApplication";
 import { connect } from 'react-redux';
 import { fetchPosition } from '../../actions/positionActions';
-import { Header, Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class JobInfo extends React.Component {
@@ -41,26 +40,16 @@ class JobInfo extends React.Component {
         //Temp solution
         var list = "Desired skills: ";
         var {desiredSkills} = this.props.position
-        let listArray = [desiredSkills];
 
         if (desiredSkills) {
             for(var i = 0; i < desiredSkills.length; i++) {
                 list += (desiredSkills[i]);
                 //If final element dont add comma
-                if (i+1 != desiredSkills.length) {
+                if (i+1 !== desiredSkills.length) {
                     list += ", ";
                 }
             }
         }
-
-        // for(let i = 0; i < 100; i++){
-        //     let children = []
-        //     for (let j = 0; j < listArray.length[i]; j++){
-        //         children.push(<Table.Cell>{desiredSkills}</Table.Cell>)
-        //     }
-        //     listArray.push(<Table.Row>{children}</Table.Row>)
-        // }
-        //temp
         return list;
     }
 

@@ -1,5 +1,4 @@
-import { APPLIED_TO_POSITION, APPLY_TO_POSITION, FETCH_ALL_APPLICATIONS } from './types';
-import history from '../helpers/history';
+import { APPLY_TO_POSITION, FETCH_ALL_APPLICATIONS } from './types';
 import { alertActions } from './alertActions';
 
 // Retrieve all applicants who have applied to the job post

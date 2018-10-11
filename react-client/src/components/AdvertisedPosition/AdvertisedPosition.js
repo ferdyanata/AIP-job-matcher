@@ -12,14 +12,14 @@ export default class AdvertisedPosition extends React.Component {
         fetch(`/api/employer/${this.props.employerId}`)
             .then(res => res.json())
             .then(
-            employer => {
-                this.setState({
-                    companyName: employer.companyName
-                });
-            }, 
-            error => {
-                console.log(error);
-            }
+                employer => {
+                    this.setState({
+                        companyName: employer.companyName
+                    });
+                },
+                error => {
+                    console.log(error);
+                }
             );
 
     }
@@ -54,7 +54,4 @@ export default class AdvertisedPosition extends React.Component {
                 return string;
         };
     }
-
-
-
 }

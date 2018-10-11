@@ -52,31 +52,3 @@ export function employerRegister(data) {
         );
     }
 }
-
-
-// export const employerRegister = employerData => dispatch => {
-//     //Create POST request params containing the employer data that the user entered
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(employerData)
-//     };
-
-
-function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
-            // if (response.status === 401) {
-            //     // auto logout if 401 response returned from api
-            //     logout();
-            //     location.reload(true);
-            // }
-
-            const error = data.msg;
-            return Promise.reject(error);
-        }
-
-        return data;
-    });
-}
