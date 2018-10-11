@@ -4,6 +4,7 @@ import { employerEditPosition, employerDeletePosition } from '../../actions/posi
 import { Dropdown } from 'semantic-ui-react';
 import { skills } from '../../data/skills';
 import history from '../../helpers/history';
+import { TextArea } from 'semantic-ui-react'
 
 
 class EmployerEditPosition extends React.Component {
@@ -98,7 +99,7 @@ class EmployerEditPosition extends React.Component {
                         <div class='field'>
                             <label for="description"><b>Description</b></label>
                             <div class='ui input'>
-                                <input type="text" placeholder="Enter position description" name="description" required onChange={this.handleChange} defaultValue={position.description} />
+                                <TextArea autoHeight placeholder="Enter position description" name="description" required onChange={this.handleChange} defaultValue={position.description} />
                             </div>
                         </div>
                         <div className='field'>

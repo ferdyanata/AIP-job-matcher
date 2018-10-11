@@ -9,7 +9,7 @@ class Register extends React.Component {
             <div>
                 <div>
                     <div class='ui pointing secondary menu'>
-                        <Link class='active item'
+                        <Link class='item'
                             to={{
                                 pathname: `/register/talent-register`,
                             }}
