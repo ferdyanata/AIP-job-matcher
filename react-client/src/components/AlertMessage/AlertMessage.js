@@ -40,6 +40,7 @@ AlertMessage.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    //css (Semantic UI) classname to use
     className: state.alert.className,
     message: state.alert.message
 });

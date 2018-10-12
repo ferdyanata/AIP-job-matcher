@@ -23,13 +23,14 @@ class EmployerAddPosition extends React.Component {
         this.handleSkillsChange = this.handleSkillsChange.bind(this);
     }
 
-    //Check if users session is valid
-    componentDidMount() {
-        if (!localStorage.getItem('user_id') || !localStorage.getItem('user_type')) {
+    //Check if users session is valid and user is employer
+    componentWillMount() {
+        if (!localStorage.getItem('user_id')
+         || !localStorage.getItem('user_type')
+         || localStorage.getItem('user_type') != 'employer') {
             history.push('/');
             console.log('invalid session');
         }
-
     }
 
     handleChange(event) {
@@ -42,19 +43,16 @@ class EmployerAddPosition extends React.Component {
             }
         });
     }
-    handleSkillsChange(event, data) {
 
+    handleSkillsChange(event, data) {
         //The values selected by the user in the dropdown
         var valuesFromDropdown = data.value;
-
         //skills to insert into our talentToRegister object
         var skills = [];
-
-        //copy data to our skills array
+        //copy data to skills array to format it properly
         for (var i in valuesFromDropdown) {
             skills[i] = valuesFromDropdown[i];
         }
-
         const { positionToAdd } = this.state;
         this.setState({
             positionToAdd: {
@@ -63,6 +61,7 @@ class EmployerAddPosition extends React.Component {
             }
         });
     }
+
     //When the user clicks the register button this is called, which dispatches an action
     handleSubmit(event) {
         event.preventDefault();
@@ -73,7 +72,6 @@ class EmployerAddPosition extends React.Component {
         }
     }
 
-
     render() {
         return (
             <div>
@@ -83,16 +81,19 @@ class EmployerAddPosition extends React.Component {
                         <div class='field'>
                             <label for="positionName"><b>Position Title</b></label>
                             <div class='ui input'>
-                                <input type="text" placeholder="Enter position title" name="positionName" required onChange={this.handleChange} />
+                                <input type="text" placeholder="Enter position title" name="positionName" 
+                                    required onChange={this.handleChange} />
                             </div>
                         </div>
                         <div class='field'>
                             <label for="description"><b>Description</b></label>
-                            <TextArea autoHeight placeholder='Enter position description' name="description" required onChange={this.handleChange} />
+                            <TextArea autoHeight placeholder='Enter position description' name="description"
+                                 required onChange={this.handleChange} />
                         </div>
                         <div className='field'>
                             <label for="skills">Desired Skills</label>
-                            <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} onChange={this.handleSkillsChange} />
+                            <Dropdown placeholder='Skills' name='skills' fluid multiple selection options={skills} 
+                                onChange={this.handleSkillsChange} />
                         </div>
                         <div class='field'>
                             <button id='form-button-control-public' class='ui button'>
@@ -108,4 +109,4 @@ class EmployerAddPosition extends React.Component {
 }
 
 
-export default connect(null)(EmployerAddPosition);
+export default connect()(EmployerAddPosition);

@@ -8,7 +8,7 @@ export default class AdvertisedPosition extends React.Component {
             companyName: ""
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         fetch(`/api/employer/${this.props.employerId}`)
             .then(res => res.json())
             .then(
@@ -33,7 +33,7 @@ export default class AdvertisedPosition extends React.Component {
                 <p>{description}</p>
                 <Link
                     to={{
-                        pathname: `/job-info/${this.props._id}`,
+                        pathname: `/position/${this.props._id}`,
                     }}
                 >
                     <div class="ui animated button" tabindex="0">

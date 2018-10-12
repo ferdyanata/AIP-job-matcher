@@ -9,7 +9,7 @@ import Register from '../Register/Register'
 import Home from '../Home/Home'
 import Login from '../Login/Login'
 import AdvertisedPositions from '../AdvertisedPositions/AdvertisedPositions'
-import JobInfo from '../JobInfo/JobInfo';
+import PositionDetails from '../PositionDetails/PositionDetails';
 import EmployerAddPosition from '../EmployerAddPosition/EmployerAddPosition';
 import EmployerEditPosition from '../EmployerEditPosition/EmployerEditPosition';
 
@@ -21,9 +21,9 @@ const Main = () => (
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
           <Route path='/positions' component={AdvertisedPositions} />
-          <Route path='/job-info/:id' component={JobInfo} />
+          <Route path='/position/:id' component={PositionDetails} />
           <Route path='/edit-position/:id' component={EmployerEditPosition} />
-          <Route path='/employer/add-position' component={EmployerAddPosition} />
+          <Route path='/add-position' component={EmployerAddPosition} />
         </Container>
       </Switch>
   </main>

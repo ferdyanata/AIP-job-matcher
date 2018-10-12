@@ -70,7 +70,7 @@ export const employerEditPosition = (position, positionId) => dispatch => {
                     type: EMPLOYER_EDIT_POSITION,
                     payload: position
                 });
-                history.replace(`/job-info/${positionId}`);
+                history.replace(`/position/${positionId}`);
             },
             error => {
                 console.log(error);

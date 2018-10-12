@@ -12,8 +12,7 @@ export default class AppliedMatchedDetailsItem extends React.Component {
         };
     }
 
-    componentWillMount() {
-
+    componentDidMount() {
         fetch(`/api/talent/${this.props.talentId}`)
             .then(res => res.json())
             .then(
@@ -26,7 +25,6 @@ export default class AppliedMatchedDetailsItem extends React.Component {
                     console.log(error);
                 }
             );
-
     }
 
     render() {
@@ -76,19 +74,18 @@ export default class AppliedMatchedDetailsItem extends React.Component {
     }
 
     skillsList = () => {
-        //Temp solution
-        var list = "";
+        var skillsListString = "";
         var { skills } = this.state.talent;
 
         if (skills) {
             for (var i = 0; i < skills.length; i++) {
-                list += (skills[i]);
+                skillsListString += (skills[i]);
                 //If final element dont add comma
                 if (i + 1 !== skills.length) {
-                    list += ", ";
+                    skillsListString += ", ";
                 }
             }
         }
-        return list;
+        return skillsListString;
     }
 }
