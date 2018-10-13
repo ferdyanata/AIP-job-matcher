@@ -3,7 +3,8 @@ import Applicants from "../Applicants/Applicants";
 import PositionApplication from "../PositionApplication/PositionApplication";
 import { connect } from 'react-redux';
 import { fetchPosition } from '../../actions/positionActions';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { getSkillsList } from '../../helpers/skillsList';
 
 class JobInfo extends React.Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class JobInfo extends React.Component {
                 <div class="ui segment">
                     <h3>{this.props.position.positionName}</h3>
                     <p>{this.props.position.description}</p>
-                    <p>{this.getListOfDesiredSkills()}</p>
+                    <p>Desired skills: {getSkillsList(this.props.position.desiredSkills)}</p>
                     <br />
                     {localStorage.getItem('user_type') === 'employer' ?
                         (
@@ -57,22 +58,6 @@ class JobInfo extends React.Component {
         else {
             return (<div>Position does not exist.</div>);
         }
-    }
-
-    getListOfDesiredSkills = () => {
-        var skillsListString = "Desired skills: ";
-        var { desiredSkills } = this.props.position
-    
-        if (desiredSkills) {
-            for (var i = 0; i < desiredSkills.length; i++) {
-                skillsListString += (desiredSkills[i]);
-                //If final element dont add comma
-                if (i + 1 !== desiredSkills.length) {
-                    skillsListString += ", ";
-                }
-            }
-        }
-        return skillsListString;
     }
 }
 

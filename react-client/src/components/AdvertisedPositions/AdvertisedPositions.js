@@ -10,6 +10,7 @@ import history from '../../helpers/history'
 class AdvertisedPositions extends React.Component {
 
     componentDidMount() {
+        //Validate user is logged in
         if (!localStorage.getItem('user_id') || !localStorage.getItem('user_type')) {
             history.push('/');
             console.log('Invalid session');
@@ -48,9 +49,7 @@ class AdvertisedPositions extends React.Component {
                     : null }
             </div>
         );
-    }
-
-    
+    }    
 }
 
 AdvertisedPositions.propTypes = {

@@ -6,7 +6,7 @@ export default class Applicants extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            applications: null
+            applications: []
         };
     }
     componentDidMount() {
@@ -40,12 +40,11 @@ export default class Applicants extends React.Component {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
+                        {/* Fill table with applicant details (ApplicantsItem's) */}
                         {this.state.applications ? (
-
                             this.state.applications.map(application =>
                                 <ApplicantsItem {...application} usertype={usertype} />
                             )
-
                         ) : null
                         }
                     </Table.Body>

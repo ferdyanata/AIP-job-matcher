@@ -5,6 +5,7 @@ import { Dropdown } from 'semantic-ui-react';
 import { skills } from '../../data/skills';
 import history from '../../helpers/history';
 import { TextArea } from 'semantic-ui-react'
+import { convertDropdownDataToArray } from '../../helpers/dropDownDataHelper';
 
 class EmployerAddPosition extends React.Component {
 
@@ -45,24 +46,15 @@ class EmployerAddPosition extends React.Component {
     }
 
     handleSkillsChange(event, data) {
-        //The values selected by the user in the dropdown
-        var valuesFromDropdown = data.value;
-        //skills to insert into our talentToRegister object
-        var skills = [];
-        //copy data to skills array to format it properly
-        for (var i in valuesFromDropdown) {
-            skills[i] = valuesFromDropdown[i];
-        }
         const { positionToAdd } = this.state;
         this.setState({
             positionToAdd: {
                 ...positionToAdd,
-                desiredSkills: skills
+                desiredSkills: convertDropdownDataToArray(data)
             }
         });
     }
 
-    //When the user clicks the register button this is called, which dispatches an action
     handleSubmit(event) {
         event.preventDefault();
         const { positionToAdd } = this.state;

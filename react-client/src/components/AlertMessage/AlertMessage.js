@@ -17,7 +17,6 @@ class AlertMessage extends React.Component {
     }
 
     render() {
-
         return (
             <div>
                 <br/>
@@ -29,7 +28,6 @@ class AlertMessage extends React.Component {
                 </div>
                 }
             </div>
-          
         );
     }
 

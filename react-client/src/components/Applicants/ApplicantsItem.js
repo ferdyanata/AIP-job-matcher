@@ -2,7 +2,7 @@ import React from 'react';
 import '../../css/AppliedMatchedDetailsItem.css';
 import { Header, Table } from 'semantic-ui-react'
 import ReactTextCollapse from 'react-text-collapse';
-
+import { getSkillsList } from '../../helpers/skillsList';
 
 export default class AppliedMatchedDetailsItem extends React.Component {
     constructor(props) {
@@ -60,7 +60,7 @@ export default class AppliedMatchedDetailsItem extends React.Component {
                     <Table.Cell>
                         <Header as='h4'>
                             <Header.Content>
-                                {this.skillsList()}
+                                {getSkillsList(this.state.talent.skills)}
                             </Header.Content>
                         </Header>
                     </Table.Cell>
@@ -71,21 +71,5 @@ export default class AppliedMatchedDetailsItem extends React.Component {
             return (<p> Loading Talent Info</p>);
         }
 
-    }
-
-    skillsList = () => {
-        var skillsListString = "";
-        var { skills } = this.state.talent;
-
-        if (skills) {
-            for (var i = 0; i < skills.length; i++) {
-                skillsListString += (skills[i]);
-                //If final element dont add comma
-                if (i + 1 !== skills.length) {
-                    skillsListString += ", ";
-                }
-            }
-        }
-        return skillsListString;
     }
 }
