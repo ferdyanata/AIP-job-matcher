@@ -9,7 +9,8 @@ import history from '../../helpers/history'
 
 class AdvertisedPositions extends React.Component {
 
-    componentWillMount() {
+    componentDidMount() {
+        //Validate user is logged in
         if (!localStorage.getItem('user_id') || !localStorage.getItem('user_type')) {
             history.push('/');
             console.log('Invalid session');
@@ -21,11 +22,8 @@ class AdvertisedPositions extends React.Component {
             }
         }
     }
-
-   
     
     render() {
-        
         const usertype = localStorage.getItem('user_type');
         return (
             <div class="ui segment">
@@ -41,18 +39,17 @@ class AdvertisedPositions extends React.Component {
                 <br/>
                 {usertype === 'employer' ? ( 
                     <div>
-                        <Link to= '/employer/add-position'>
+                        <Link to= '/add-position'>
                             <button id='form-button-control-public' class='ui button'>
                                 Add Position
                             </button>
                         </Link>
                     </div>
-                    ) : null }
+                    )   
+                    : null }
             </div>
         );
-    }
-
-    
+    }    
 }
 
 AdvertisedPositions.propTypes = {

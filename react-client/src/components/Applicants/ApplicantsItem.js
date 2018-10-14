@@ -2,7 +2,7 @@ import React from 'react';
 import '../../css/AppliedMatchedDetailsItem.css';
 import { Header, Table } from 'semantic-ui-react'
 import ReactTextCollapse from 'react-text-collapse';
-
+import { getSkillsList } from '../../helpers/skillsList';
 
 export default class AppliedMatchedDetailsItem extends React.Component {
     constructor(props) {
@@ -12,8 +12,7 @@ export default class AppliedMatchedDetailsItem extends React.Component {
         };
     }
 
-    componentWillMount() {
-
+    componentDidMount() {
         fetch(`/api/talent/${this.props.talentId}`)
             .then(res => res.json())
             .then(
@@ -26,7 +25,6 @@ export default class AppliedMatchedDetailsItem extends React.Component {
                     console.log(error);
                 }
             );
-
     }
 
     render() {
@@ -62,7 +60,7 @@ export default class AppliedMatchedDetailsItem extends React.Component {
                     <Table.Cell>
                         <Header as='h4'>
                             <Header.Content>
-                                {this.skillsList()}
+                                {getSkillsList(this.state.talent.skills)}
                             </Header.Content>
                         </Header>
                     </Table.Cell>
@@ -73,22 +71,5 @@ export default class AppliedMatchedDetailsItem extends React.Component {
             return (<p> Loading Talent Info</p>);
         }
 
-    }
-
-    skillsList = () => {
-        //Temp solution
-        var list = "";
-        var { skills } = this.state.talent;
-
-        if (skills) {
-            for (var i = 0; i < skills.length; i++) {
-                list += (skills[i]);
-                //If final element dont add comma
-                if (i + 1 !== skills.length) {
-                    list += ", ";
-                }
-            }
-        }
-        return list;
     }
 }

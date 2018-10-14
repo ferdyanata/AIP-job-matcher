@@ -6,10 +6,10 @@ export default class Applicants extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            applications: null
+            applications: []
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         fetch(`/api/applications/${this.props.positionId}`)
             .then(res => res.json())
             .then(
@@ -17,6 +17,7 @@ export default class Applicants extends React.Component {
                     this.setState({
                         applications: applications
                     });
+                    //To ensure applicants list is updated
                     this.forceUpdate();
                 }, 
                 error => {
@@ -28,7 +29,6 @@ export default class Applicants extends React.Component {
 
     render() {
         const usertype = localStorage.getItem('user_type');
-
         return (
             <div>
                 <Table basic='very' celled collapsing>
@@ -40,14 +40,12 @@ export default class Applicants extends React.Component {
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
+                        {/* Fill table with applicant details (ApplicantsItem's) */}
                         {this.state.applications ? (
-
                             this.state.applications.map(application =>
                                 <ApplicantsItem {...application} usertype={usertype} />
                             )
-
-                        ) :
-                            <p></p>
+                        ) : null
                         }
                     </Table.Body>
                 </Table>

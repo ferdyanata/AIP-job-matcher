@@ -44,8 +44,12 @@ AIP Project that matches employees to their employers
 >
 
 # How to run
-Type npm start to run individual main file such as (client-react-redux or express-server folders).
-Alternatively you can type npm run dev to run both at the same time.
+You will need to install three packages. cd into two folders:
+1. react-client
+2. express-server
+3. outside of both react-client and express-server
+
+To run the application, type 'npm run dev' outside of the react-client and express-server folders
 
 # Software and Tools used
 **RoboMongo**

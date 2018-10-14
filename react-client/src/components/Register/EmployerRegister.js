@@ -7,16 +7,12 @@ class EmployerRegister extends React.Component {
 
     constructor() {
         super();
-
-        //fields get updated each time the user enters something, handled in handleChange()
         this.state = {
             employerToRegister: {
                 companyName: '',
                 email: '',
                 password: ''
-            },
-            submitted: false,
-            employerLoggedIn: null,
+            }
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -34,16 +30,15 @@ class EmployerRegister extends React.Component {
         });
     }
 
-    //When the user clicks the register button this is called, which dispatches an action
     handleSubmit(event) {
         event.preventDefault();
         const { employerToRegister } = this.state;
         const { dispatch } = this.props;
+        //validate fields before submitting
         if (employerToRegister.companyName.length > 0) {
             if (employerToRegister.password.length > 6) {
                 if (employerToRegister.email.length > 6 && employerToRegister.email.includes("@")){
                     dispatch(employerRegister(employerToRegister));
-                    this.setState({ submitted: true });
                 } else {
                     dispatch(alertActions.error("Invalid email entered"));
                 }
