@@ -49,6 +49,8 @@ You will need to install three packages. cd into two folders:
 2. express-server
 3. outside of both react-client and express-server
 
+To run the application, type 'npm run dev' outside of the react-client and express-server folders
+
 # Software and Tools used
 **RoboMongo**
 > RoboMongo/Robo 3T is a GUI for MongoDB
