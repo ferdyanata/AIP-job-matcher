@@ -9,7 +9,6 @@ export function employerLogin(data){
         .then(res => {
            const token = res.data.token;
            localStorage.setItem('jwtToken', token);
-           //George's temp fix
            localStorage.setItem('user_id', res.data.employer._id);
            localStorage.setItem('user_type', 'employer');
            history.push('/positions');

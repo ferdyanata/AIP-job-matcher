@@ -17,7 +17,6 @@ class AlertMessage extends React.Component {
     }
 
     render() {
-
         return (
             <div>
                 <br/>
@@ -29,7 +28,6 @@ class AlertMessage extends React.Component {
                 </div>
                 }
             </div>
-          
         );
     }
 
@@ -40,6 +38,7 @@ AlertMessage.propTypes = {
 };
 
 const mapStateToProps = state => ({
+    //css (Semantic UI) classname to use
     className: state.alert.className,
     message: state.alert.message
 });

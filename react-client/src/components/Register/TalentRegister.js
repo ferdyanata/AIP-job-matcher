@@ -18,7 +18,6 @@ class TalentRegister extends React.Component {
                 password: '',
                 skills: [] 
             },
-            submitted: false,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -70,7 +69,6 @@ class TalentRegister extends React.Component {
             if (talentToRegister.password.length > 6) {
                 if (talentToRegister.email.length > 6 && talentToRegister.email.includes("@")){
                     dispatch(talentRegister(talentToRegister));
-                    this.setState({ submitted: true });
                 } else {
                     dispatch(alertActions.error("Invalid email entered"));
                 }
@@ -129,8 +127,6 @@ class TalentRegister extends React.Component {
             </div>
 
         );
-
-
     }
  
 }

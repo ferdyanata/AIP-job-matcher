@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { truncateString } from '../../helpers/truncate';
 
 export default class AdvertisedPosition extends React.Component {
     constructor(props) {
@@ -8,24 +9,26 @@ export default class AdvertisedPosition extends React.Component {
             companyName: ""
         };
     }
-    componentWillMount() {
+    componentDidMount() {
+        //Fetch the company name who advertised this job
         fetch(`/api/employer/${this.props.employerId}`)
             .then(res => res.json())
             .then(
-            employer => {
-                this.setState({
-                    companyName: employer.companyName
-                });
-            }, 
-            error => {
-                console.log(error);
-            }
+                employer => {
+                    this.setState({
+                        companyName: employer.companyName
+                    });
+                },
+                error => {
+                    console.log(error);
+                }
             );
 
     }
 
     render() {
-        var description = truncate(this.props.description);
+        //Shorten descriptions that are too long
+        var description = truncateString(this.props.description);
         return (
             <div>
                 <h3>{this.props.positionName}</h3>
@@ -33,9 +36,8 @@ export default class AdvertisedPosition extends React.Component {
                 <p>{description}</p>
                 <Link
                     to={{
-                        pathname: `/job-info/${this.props._id}`,
-                    }}
-                >
+                        pathname: `/position/${this.props._id}`,
+                    }}>
                     <div class="ui animated button" tabindex="0">
                         <div class="visible content">View</div>
                         <div class="hidden content">
@@ -45,16 +47,6 @@ export default class AdvertisedPosition extends React.Component {
                 </Link>
                 <hr />
             </div>
-        );
-
-        function truncate(string) {
-            if (string && string.length > 500)
-                return string.substring(0, 100) + '...';
-            else
-                return string;
-        };
+        );        
     }
-
-
-
 }

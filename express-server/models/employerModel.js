@@ -23,9 +23,14 @@ const employerSchema = new Schema({
     }
 });
 
+/**
+ * bcrypt is an npm package that hashes passwords
+ */
 employerSchema.pre('save', function (next) {
     var user = this;
     if (this.isModified('password') || this.isNew) {
+        // salt helps with prepending a string to an entered password so it becomes harder
+        // to brute-force passwords.
         bcrypt.genSalt(10, function (err, salt) {
             if (err) {
                 return next(err);
@@ -34,6 +39,7 @@ employerSchema.pre('save', function (next) {
                 if (err) {
                     return next(err);
                 }
+                // if no errors, store hash password in DB
                 user.password = hash;
                 next();
             });
@@ -43,6 +49,7 @@ employerSchema.pre('save', function (next) {
     }
 });
 
+// Loads hash from the DB and compares using comparePassword if it matches a post request from client
 employerSchema.methods.comparePassword = function (passw, cb) {
     bcrypt.compare(passw, this.password, function (err, isMatch) {
         if (err) {

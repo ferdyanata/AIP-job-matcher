@@ -69,20 +69,20 @@ router.post('/position', function (req, res, next) {
         positionName: req.body.positionName,
         description: req.body.description,
         desiredSkills: req.body.desiredSkills,
-        // creationDate: req.body.creationDate,
-        // closingDate: req.body.closingDate,
         employerId: req.body.employerId
     });
 
     req.checkBody('positionName', 'Name is required').notEmpty();
     req.checkBody('description', 'Description is required').notEmpty();
-    // req.checkBody('closingDate', 'Closing date is required').notEmpty();
 
     positionToAdd.save().then(function (position) {
         res.send(position);
     });
 });
 
+/**
+ * Edits a job listing ad based from position id
+ */
 router.put('/edit-position/:positionId', function(req, res, next){
     var positionId = req.params.positionId;
 

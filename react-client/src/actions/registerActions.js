@@ -9,18 +9,18 @@ export function talentRegister(data) {
         return axios.post('/api/talent-register', data).then(res => {
             const token = res.data.token;
             localStorage.setItem('jwtToken', token);
-            //George's temp fix
-           localStorage.setItem('user_id', res.data.newUser._id);
-           localStorage.setItem('user_type', 'talent');
+            localStorage.setItem('user_id', res.data.newUser._id);
+            localStorage.setItem('user_type', 'talent');
         }).then(talent => {
             dispatch({
                 type: TALENT_REGISTER,
                 payload: talent
             });
+            //Take the user to the homepage
             history.push('/positions');
-            window.location.reload();            
+            window.location.reload();
         },
-        error => {
+            error => {
                 console.log(error.response.data.msg);
                 dispatch(alertActions.error(error.response.data.msg));
             }
@@ -33,9 +33,8 @@ export function employerRegister(data) {
         return axios.post('/api/employer-register', data).then(res => {
             const token = res.data.token;
             localStorage.setItem('jwtToken', token);
-            //George's temp fix
-           localStorage.setItem('user_id', res.data.newUser._id);
-           localStorage.setItem('user_type', 'employer');
+            localStorage.setItem('user_id', res.data.newUser._id);
+            localStorage.setItem('user_type', 'employer');
         }).then(employer => {
             dispatch({
                 type: EMPLOYER_REGISTER,
@@ -43,40 +42,12 @@ export function employerRegister(data) {
             });
             //Take the employer to the homepage
             history.push('/positions');
-            window.location.reload();            
+            window.location.reload();
         },
-        error => {
+            error => {
                 console.log(error.response.data.msg);
                 dispatch(alertActions.error(error.response.data.msg));
             }
         );
     }
-}
-
-
-// export const employerRegister = employerData => dispatch => {
-//     //Create POST request params containing the employer data that the user entered
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(employerData)
-//     };
-
-
-function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
-            // if (response.status === 401) {
-            //     // auto logout if 401 response returned from api
-            //     logout();
-            //     location.reload(true);
-            // }
-
-            const error = data.msg;
-            return Promise.reject(error);
-        }
-
-        return data;
-    });
 }

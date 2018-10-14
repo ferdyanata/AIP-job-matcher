@@ -32,9 +32,9 @@ router.post('/application', function (req, res, next) {
         messageToEmployer: req.body.messageToEmployer,
         talentId: req.body.talentId,
         positionId: req.body.positionId,
-        // applicationDate: req.body.applicationDate
     });
 
+    // error checking to ensure field is not empty in the client
     req.checkBody('messageToEmployer', 'Message is required').notEmpty();
 
     applicationToSubmit.save().then(function (application) {
@@ -43,11 +43,9 @@ router.post('/application', function (req, res, next) {
 });
 
 router.get('/application/:talentId/:positionId', function (req, res, next) {
-
     var talentId = req.params.talentId;
     var positionId = req.params.positionId;
     
-
     Application.findOne({ talentId: talentId, positionId: positionId}, function (err, application) {
         if (err) {
             console.log(err);
@@ -69,27 +67,5 @@ router.get('/talent/:talentId', function (req, res, next) {
         }
     });
 })
-
-// //Ignore all this stuff
-// router.get('/applicants-info/:applicationId', function (req, res, next) {
-//     var applicationId = req.params.applicationId;
-
-//     Application.aggregate([
-//        {
-//            $lookup: {
-//                from: "talents",
-//                localField: "talentId",
-//                foreignField: "_id",
-//                as: "applicantsInfo"
-//            }
-//        } 
-//     ]).exec(function(err, results) {
-//         res.send(results)
-//         console.log(results);
-//     });
-
-
-// });
-
 
 module.exports = router;
